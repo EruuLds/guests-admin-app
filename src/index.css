@@ -1,0 +1,113 @@
+@font-face {
+  font-family: "stack";
+  src: url(assets/fonts/StackSansText-VariableFont_wght.ttf);
+  font-weight: 400;
+}
+
+@import "bootstrap-icons";
+
+@import "tailwindcss";
+
+@theme {
+  --font-display: "stack", sans-serif;
+  --standard-ease: cubic-bezier(0.5,0,0.5,1)
+  --text-dark: var(text-zinc-950);
+}
+
+* {
+  font-family: var(--font-display);
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+h4 {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+input {
+  @apply w-full line-clamp-none leading-none bg-gray-200 hover:bg-gray-300 rounded-lg p-3 outline-none
+}
+
+label {
+  @apply mb-2 block
+}
+
+/* Centrar el texto */
+input[type="number"] {
+  text-align: center;
+}
+
+/* Quitar flechas en Chrome, Safari, Edge (WebKit) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Quitar flechas en Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.bg-stripes {
+  background-image: url('/public/img/stripes.svg');
+  background-repeat: repeat;
+}
+
+.responsive-container {
+  @apply @container px-[1rem] sm:px-[1.5rem] md:px-[1.5rem] lg:px-[3rem]
+}
+
+.text-dark {
+  color: var(--text-dark)
+}
+.text-light {
+  @apply text-zinc-50;
+}
+
+.text-light-gray {
+  @apply text-gray-400;
+}
+
+.text-yellow {
+  @apply text-yellow-600;
+}
+.text-red {
+  @apply text-red-700;
+}
+.text-blue {
+  @apply text-blue-600;
+}
+.text-green {
+  @apply text-emerald-600;
+}
+
+
+.button-white {
+  @apply bg-white hover:bg-gray-50 hover:scale-[1.03] active:scale-[1.0];
+}
+.button-gray {
+  @apply bg-gray-100 hover:bg-gray-200 hover:scale-[1.03] active:scale-[1.0];
+}
+.button-dark-gray {
+  @apply bg-gray-200 hover:bg-gray-300 hover:scale-[1.03] active:scale-[1.0];
+}
+.button-yellow {
+  @apply bg-yellow-200 hover:bg-yellow-300 hover:scale-[1.03] active:scale-[1.0];
+}
+.button-red {
+  @apply bg-red-200 hover:bg-red-300 hover:scale-[1.03] active:scale-[1.0];
+}
+.button-blue {
+  @apply bg-blue-200 hover:bg-blue-300 hover:scale-[1.03] active:scale-[1.0];
+}
+.button-green {
+  @apply bg-emerald-200 hover:bg-emerald-300 hover:scale-[1.03] active:scale-[1.0];
+}
