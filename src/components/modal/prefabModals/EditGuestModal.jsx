@@ -2,7 +2,7 @@ import Modal from "../Modal";
 import ModalBody from "../ModalBody";
 import ModalFooter from "../ModalFooter";
 import Button from "../../Button";
-import GuestForm from "../../forms/guestForm";
+import GuestForm from "../../forms/GuestForm";
 import LoadingOverlay from "../../LoadingOverlay";
 import { DataContext } from "../../../contexts/DataContext";
 import { useContext } from "react";
