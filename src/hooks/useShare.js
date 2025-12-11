@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DataContext } from "../contexts/dataContext";
+import { DataContext } from "../contexts/DataContext";
 
 export function useShare(guestID) {
     const { customInvitationURL } = useContext(DataContext);

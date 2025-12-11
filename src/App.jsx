@@ -5,7 +5,7 @@ import SectionContainer from './components/SectionContainer'
 import GuestCard from './components/guestCard/GuestCard'
 import GuestCardSkeleton from './components/GuestCard/GuestCardSkeleton'
 import { useContext, useEffect} from 'react'
-import { DataContext } from './contexts/dataContext'
+import { DataContext } from './contexts/DataContext'
 import { ModalContext } from './contexts/ModalContext'
 import { useHandleModals } from './hooks/useHandleModals'
 

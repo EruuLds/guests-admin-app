@@ -3,7 +3,7 @@ import ModalBody from "../ModalBody";
 import ModalFooter from "../ModalFooter";
 import Button from "../../Button";
 import LoadingOverlay from "../../LoadingOverlay";
-import { DataContext } from "../../../contexts/dataContext";
+import { DataContext } from "../../../contexts/DataContext";
 import { useContext, useRef } from "react";
 import { useHandleModals } from "../../../hooks/useHandleModals";
 

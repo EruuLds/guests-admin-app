@@ -2,7 +2,7 @@ import Button from "../Button";
 import ReactDOM from 'react-dom'
 import { useContext } from "react";
 import { ModalContext } from "../../contexts/ModalContext";
-import { DataContext } from "../../contexts/dataContext";
+import { DataContext } from "../../contexts/DataContext";
 import { useHandleModals } from "../../hooks/useHandleModals";
 
 export default function Modal({ id, card, title, children, onClose}) {
