@@ -15,6 +15,9 @@ export function DataContextProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  //Búsqueda, filtros y ordenamiento
+  const [searchData, setSearchData] = useState("");
+
   // Leer invitados en tiempo real
   useEffect(() => {
     const guestsRef = ref(database, "invitados");
@@ -89,7 +92,9 @@ export function DataContextProvider({ children }) {
       error,
       addGuest,
       updateGuest,
-      deleteGuest
+      deleteGuest,
+      searchData,
+      setSearchData
     }}>
       {children}
     </DataContext.Provider>

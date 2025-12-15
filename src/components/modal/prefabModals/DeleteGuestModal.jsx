@@ -18,13 +18,13 @@ export default function DeleteGuestModal() {
         <Modal id={modalID} title={"Eliminar Invitado"}>
             <ModalBody>
                 <div className="text-center">
-                    <p className="mb-8">Vas a eliminar a:</p>
+                    <p className="mb-4">Vas a eliminar a:</p>
                     <h3 className="uppercase mb-2 bg-gray-200 rounded-lg p-2">
                         {selectedGuestData
                             ? `${selectedGuestData.name} ${selectedGuestData.lastName}`
                             : ""}
                     </h3>
-                    <p className="mb-8 text-red text-xs">
+                    <p className="mb-4 text-red text-xs">
                         <i className="bi bi-exclamation-triangle me-2"></i>Esta acción NO se
                         puede deshacer.
                     </p>

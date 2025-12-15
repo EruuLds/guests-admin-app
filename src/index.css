@@ -32,7 +32,11 @@ h4 {
 }
 
 input {
-  @apply w-full line-clamp-none leading-none bg-gray-200 hover:bg-gray-300 rounded-lg p-3 outline-none
+  @apply w-full line-clamp-none leading-none bg-gray-100 hover:bg-gray-200 rounded-lg p-3 outline-none
+}
+
+input.search-input {
+  @apply rounded-2xl
 }
 
 label {
