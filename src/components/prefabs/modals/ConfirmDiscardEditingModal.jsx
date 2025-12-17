@@ -1,19 +1,19 @@
-import Modal from '../Modal'
-import ModalBody from '../ModalBody'
-import ModalFooter from '../ModalFooter'
-import Button from '../../Button'
-import { useHandleModals } from '../../../hooks/useHandleModals'
+import Modal from "../../modal/Modal";
+import ModalBody from "../../modal/ModalBody";
+import ModalFooter from "../../modal/ModalFooter";
+import Button from "../../ui/Button";
+import { useHandleModals } from "../../../hooks/useHandleModals";
 
-export default function ConfirmDiscardAddingModal() {
+export default function ConfirmDiscardEditingModal() {
     const handleModals = useHandleModals();
-    const modalID = 'confirmDiscardAdding';
+    const modalID = 'confirmDiscardEditing';
 
     return (
         <Modal id={modalID} title={"Descartar Cambios"}>
             <ModalBody>
                 <div className="text-center">
                     <p>
-                        Hay cambios en la información del formulario. ¿Deseas descartarlos?
+                        Hay cambios en la información del este invitado. ¿Deseas descartarlos?
                     </p>
                 </div>
             </ModalBody>
@@ -35,12 +35,8 @@ export default function ConfirmDiscardAddingModal() {
                     textColor={"white"}
                     roundness={"large"}
                     onClickFunction={() => {
-                        handleModals(
-                            "close",
-                            "confirmDiscardAdding",
-                            () => handleModals("close", "addGuest"),
-                            10
-                        );
+                        handleModals("close", modalID)
+                        handleModals("close", "editGuest")
                     }}
                 >
                     Descartar

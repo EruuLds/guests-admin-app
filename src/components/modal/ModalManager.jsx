@@ -1,8 +1,8 @@
-import AddGuestModal from "./prefabModals/AddGuestModal";
-import EditGuestModal from "./prefabModals/EditGuestModal";
-import DeleteGuestModal from "./prefabModals/DeleteGuestModal";
-import ConfirmDiscardAddingModal from "./prefabModals/ConfirmDiscardAddingModal";
-import ConfirmDiscardEditingModal from "./prefabModals/ConfirmDiscardEditingModal";
+import AddGuestModal from "../prefabs/modals/AddGuestModal";
+import EditGuestModal from "../prefabs/modals/EditGuestModal";
+import DeleteGuestModal from "../prefabs/modals/DeleteGuestModal";
+import ConfirmDiscardAddingModal from "../prefabs/modals/ConfirmDiscardAddingModal";
+import ConfirmDiscardEditingModal from "../prefabs/modals/ConfirmDiscardEditingModal";
 import { ModalContext } from "../../contexts/ModalContext";
 import { useContext } from "react";
 

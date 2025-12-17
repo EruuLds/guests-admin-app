@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button from "../ui/Button";
 import ReactDOM from 'react-dom'
 import { useContext } from "react";
 import { ModalContext } from "../../contexts/ModalContext";

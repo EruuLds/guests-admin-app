@@ -1,18 +1,19 @@
-import Modal from "../Modal";
-import ModalBody from "../ModalBody";
-import ModalFooter from "../ModalFooter";
-import Button from "../../Button";
-import { useHandleModals } from "../../../hooks/useHandleModals";
+import Modal from '../../modal/Modal'
+import ModalBody from '../../modal/ModalBody'
+import ModalFooter from '../../modal/ModalFooter'
+import Button from '../../ui/Button'
+import { useHandleModals } from '../../../hooks/useHandleModals'
 
-export default function ConfirmDiscardEditingModal() {
+export default function ConfirmDiscardAddingModal() {
     const handleModals = useHandleModals();
+    const modalID = 'confirmDiscardAdding';
 
     return (
-        <Modal id={"confirmDiscardEditing"} title={"Descartar Cambios"}>
+        <Modal id={modalID} title={"Descartar Cambios"}>
             <ModalBody>
                 <div className="text-center">
                     <p>
-                        Hay cambios en la información del este invitado. ¿Deseas descartarlos?
+                        Hay cambios en la información del formulario. ¿Deseas descartarlos?
                     </p>
                 </div>
             </ModalBody>
@@ -22,7 +23,7 @@ export default function ConfirmDiscardEditingModal() {
                     size={"large"}
                     buttonColor={"gray"}
                     roundness={"large"}
-                    onClickFunction={() => handleModals("close", "confirmDiscardEditing")}
+                    onClickFunction={() => handleModals("close", modalID)}
                 >
                     Volver
                 </Button>
@@ -34,13 +35,8 @@ export default function ConfirmDiscardEditingModal() {
                     textColor={"white"}
                     roundness={"large"}
                     onClickFunction={() => {
-                        // Lógica para eliminar el invitado
-                        handleModals(
-                            "close",
-                            "confirmDiscardEditing",
-                            () => handleModals("close", "editGuest"),
-                            10
-                        );
+                        handleModals("close", modalID);
+                        handleModals("close", "addGuest");
                     }}
                 >
                     Descartar

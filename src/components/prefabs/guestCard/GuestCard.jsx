@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import { DataContext } from '../../contexts/DataContext';
-import Button from '../Button';
-import { useShare } from '../../hooks/useShare';
-import { useHandleModals } from '../../hooks/useHandleModals';
+import { DataContext } from '../../../contexts/DataContext';
+import Button from '../../ui/Button';
+import { useShare } from '../../../hooks/useShare';
+import { useHandleModals } from '../../../hooks/useHandleModals';
 
 export default function GuestCard({id, guestName, guestLastName, passes, table, confirmation, confirmedPasses, attendanceReg}) {
     const { selectedCard, setSelectedCard, customInvitationURL} = useContext(DataContext);

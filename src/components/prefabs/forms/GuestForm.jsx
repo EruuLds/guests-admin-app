@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
-import Button from '../Button';
-import { DataContext } from '../../contexts/DataContext';
+import Button from '../../ui/Button';
+import { DataContext } from '../../../contexts/DataContext';
 import { useContext, useEffect, useRef } from 'react';
-import { useHandleModals } from '../../hooks/useHandleModals';
-import { useHandleDirtyForms } from '../../hooks/useHandleDirtyForms';
+import { useHandleModals } from '../../../hooks/useHandleModals';
+import { useHandleDirtyForms } from '../../../hooks/useHandleDirtyForms';
 
 export default function GuestForm({formType, formId}) {
   const { guests, selectedCard, addGuest, updateGuest } = useContext(DataContext);

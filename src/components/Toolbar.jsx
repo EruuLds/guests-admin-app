@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from "./ui/Button";
 import { DataContext } from "../contexts/DataContext";
 import { useContext } from "react";
 import { useHandleModals } from "../hooks/useHandleModals";

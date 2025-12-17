@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { DataContext } from '../contexts/DataContext';
+import { DataContext } from '../../contexts/DataContext';
 
 export default function Button({children, type, size, targetForm, roundness, wFit, hFit, buttonColor, onClickFunction, icon, textColor}) {
   const { loading, initialLoading } = useContext(DataContext);

@@ -1,8 +1,8 @@
-import Modal from "../Modal";
-import ModalBody from "../ModalBody";
-import ModalFooter from "../ModalFooter";
-import Button from "../../Button";
-import LoadingOverlay from "../../LoadingOverlay";
+import Modal from "../../modal/Modal";
+import ModalBody from "../../modal/ModalBody";
+import ModalFooter from "../../modal/ModalFooter";
+import Button from "../../ui/Button";
+import LoadingOverlay from "../../ui/LoadingOverlay";
 import { DataContext } from "../../../contexts/DataContext";
 import { useContext, useRef } from "react";
 import { useHandleModals } from "../../../hooks/useHandleModals";

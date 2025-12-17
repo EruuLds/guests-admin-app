@@ -1,5 +1,5 @@
-import GuestCard from "./guestCard/GuestCard";
-import GuestCardSkeleton from "./guestCard/GuestCardSkeleton";
+import GuestCard from "../components/prefabs/guestCard/GuestCard";
+import GuestCardSkeleton from "../components/prefabs/guestCard/GuestCardSkeleton";
 import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
 import { useFilteredAndSortedGuests } from "../hooks/useFilteredAndSortedGuests";

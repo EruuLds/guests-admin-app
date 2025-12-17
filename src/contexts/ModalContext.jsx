@@ -6,9 +6,23 @@ export function ModalContextProvider(props) {
     const [openModals, setOpenModals] = useState([]);
     const [visibleModals, setVisibleModals] = useState([]);
 
-    const useOpenModalsState = { openModals, setOpenModals, visibleModals, setVisibleModals };
+    const [openDialogs, setOpenDialogs] = useState([]);
+    const [visibleDialogs, setVisibleDialogs] = useState([]);
 
-    return(
-        <ModalContext.Provider value={useOpenModalsState}>{props.children}</ModalContext.Provider>
+    return (
+        <ModalContext.Provider
+            value={{
+                openModals,
+                setOpenModals,
+                visibleModals,
+                setVisibleModals,
+                openDialogs,
+                setOpenDialogs,
+                visibleDialogs,
+                setVisibleDialogs,
+            }}
+        >
+            {props.children}
+        </ModalContext.Provider>
     );
 }

@@ -1,10 +1,10 @@
 import { useContext} from "react";
 import { ModalContext } from "../contexts/ModalContext";
 
-export function useHandleModals() {
-  const { setOpenModals, setVisibleModals } = useContext(ModalContext);
+export function useHandleDialogs() {
+  const { setOpenDialogs, setVisibleDialogs } = useContext(ModalContext);
 
-  const handleModals = (action, modalID, afterClose) => {
+  const handleDialogs = (action, modalID, afterClose) => {
     if (action === 'open') {
       setOpenModals(prev => [...prev, modalID]);
       setTimeout(() => {
@@ -19,5 +19,5 @@ export function useHandleModals() {
     }
   };
 
-  return handleModals;
+  return handleDialogs;
 }
