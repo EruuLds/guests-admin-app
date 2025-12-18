@@ -41,6 +41,10 @@ h4 {
   font-weight: 800;
 }
 
+p {
+  margin: 0;
+}
+
 input {
   @apply w-full line-clamp-none leading-none bg-zinc-100 hover:bg-zinc-200 rounded-lg p-3 outline-offset-2 focus:outline-2 focus:outline-rose-400
 }

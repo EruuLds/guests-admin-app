@@ -48,7 +48,7 @@ export default function GuestForm({formType, formId}) {
     if (formType === 'add') {
       addGuest(
         data,
-        () => openDialog('success', `Anadiste a ${data.name.toUpperCase()} ${data.lastName.toUpperCase()} a la lista`),
+        () => openDialog('success', `Añadiste a ${data.name.toUpperCase()} ${data.lastName.toUpperCase()} a la lista`),
         () => openDialog('error', 'Se produjo un error al añadir al invitado a la lista. Inténtalo nuevamente.'),
         () => handleModals('close', 'addGuest')
       );

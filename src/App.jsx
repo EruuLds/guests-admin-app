@@ -29,6 +29,7 @@ function App() {
         <Toolbar />
         <SectionContainer id="guestsList">
           <GuestsList />
+          
         </SectionContainer>
 
         <ModalManager />
