@@ -24,7 +24,7 @@ export default function Modal({ id, card, title, children, onClose}) {
         transition-all 
         duration-500 
         ${show ? "opacity-100" : "opacity-0"}`}
-      onClick={!loading && onClose ? onClose : () => handleModals("close", id)}
+      onClick={!loading ? onClose ? onClose : () => handleModals("close", id) : undefined }
     >
       <div className="relative flex justify-center w-full h-full">
         <div
@@ -62,7 +62,7 @@ export default function Modal({ id, card, title, children, onClose}) {
                   icon={"x-lg"}
                   wFit={"full"}
                   hFit={"full"}
-                  buttonColor={"gray"}
+                  buttonColor={"secondary"}
                   roundness={"full"}
                   onClickFunction={!loading && onClose ? onClose : () => handleModals("close", id)}
                 ></Button>

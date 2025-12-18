@@ -43,39 +43,45 @@ export function DataContextProvider({ children }) {
   }, []);
 
   // Funciones de CRUD
-  const addGuest = async (guestData, onComplete) => {
+  const addGuest = async (guestData, onSuccess, onError, onComplete) => {
     setLoading(true);
     try {
       await push(ref(database, "invitados"), guestData);
-      if (onComplete) onComplete();
+      onSuccess?.();
     } catch (err) {
       setError(err.message);
+      onError?.();
     } finally {
       setLoading(false);
+      onComplete?.();
     }
   };
 
-  const updateGuest = async (id, updatedData, onComplete) => {
+  const updateGuest = async (id, updatedData, onSuccess, onError, onComplete) => {
     setLoading(true);
     try {
       await update(ref(database, `invitados/${id}`), updatedData);
-      if (onComplete) onComplete();
+      onSuccess?.();
     } catch (err) {
       setError(err.message);
+      onError?.();
     } finally {
       setLoading(false);
+      onComplete?.();
     }
   };
 
-  const deleteGuest = async (id, onComplete) => {
+  const deleteGuest = async (id, onSuccess, onError, onComplete) => {
     setLoading(true);
     try {
       await remove(ref(database, `invitados/${id}`));
-      if (onComplete) onComplete();
+      onSuccess?.();
     } catch (err) {
       setError(err.message);
+      onError?.();
     } finally {
       setLoading(false);
+      onComplete?.();
     }
   };
 

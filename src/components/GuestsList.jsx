@@ -1,5 +1,5 @@
-import GuestCard from "../components/prefabs/guestCard/GuestCard";
-import GuestCardSkeleton from "../components/prefabs/guestCard/GuestCardSkeleton";
+import GuestCard from "./prefabs/guest-card/GuestCard";
+import GuestCardSkeleton from "./prefabs/guest-card/GuestCardSkeleton";
 import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
 import { useFilteredAndSortedGuests } from "../hooks/useFilteredAndSortedGuests";
@@ -11,7 +11,16 @@ export default function GuestsList() {
 
     return (
         <>
-            {error && <h1>Error: {error}</h1>}
+            {(error && guests.length === 0) &&
+                <div className="flex items-center flex-col text-center pt-25">
+                    <h2 className="text-2xl mb-4 text-light-gray">
+                        Se produjo un error al obtener los datos.
+                    </h2>
+                    <p className="mb-8 text-light-gray">
+                        Por favor, refresca la página
+                    </p>
+                </div>
+            }
             {initialLoading &&
                 Array.from({ length: 10 }).map((_, i) => <GuestCardSkeleton key={i} />)}
             {!initialLoading && guests.length === 0 && (

@@ -17,6 +17,15 @@
 :root {
   scroll-behavior: smooth;
   font-family: var(--font-display);
+  @apply text-zinc-800
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+body {
+  min-height: 100dvh;
 }
 
 h1 {
@@ -33,7 +42,7 @@ h4 {
 }
 
 input {
-  @apply w-full line-clamp-none leading-none bg-gray-100 hover:bg-gray-200 rounded-lg p-3 outline-none
+  @apply w-full line-clamp-none leading-none bg-zinc-100 hover:bg-zinc-200 rounded-lg p-3 outline-offset-2 focus:outline-2 focus:outline-rose-400
 }
 
 input.search-input {
@@ -70,9 +79,6 @@ input[type="number"] {
   @apply @container px-[1rem] sm:px-[1.5rem] md:px-[1.5rem] lg:px-[3rem]
 }
 
-.text-dark {
-  color: var(--text-dark)
-}
 .text-light {
   @apply text-zinc-50;
 }
@@ -88,31 +94,55 @@ input[type="number"] {
   @apply text-red-700;
 }
 .text-blue {
-  @apply text-blue-600;
+  @apply text-sky-600;
 }
 .text-green {
   @apply text-emerald-600;
 }
 
 
+.button-primary {
+  @apply text-zinc-50 bg-rose-400 hover:bg-rose-500 active:scale-[0.98];
+}
+.button-primary-subtle {
+  @apply text-zinc-50 bg-rose-300 hover:bg-rose-400 active:scale-[0.98];
+}
+.button-secondary {
+  @apply bg-zinc-100 hover:bg-zinc-200 active:scale-[0.98];
+}
+.button-secondary-danger {
+  @apply text-red-700 bg-zinc-100 hover:bg-zinc-200 active:scale-[0.98];
+}
+
+
+
 .button-white {
-  @apply bg-white hover:bg-gray-50 hover:scale-[1.03] active:scale-[1.0];
+  @apply text-zinc-950 bg-white hover:bg-zinc-50 active:scale-[0.98];
 }
-.button-gray {
-  @apply bg-gray-100 hover:bg-gray-200 hover:scale-[1.03] active:scale-[1.0];
+
+.button-white-danger {
+  @apply text-red-700 bg-white hover:bg-gray-50 active:scale-[0.98];
 }
+
+.button-whatsapp {
+  @apply text-gray-50 bg-emerald-400 hover:bg-emerald-500 active:scale-[0.98];
+}
+
 .button-dark-gray {
-  @apply bg-gray-200 hover:bg-gray-300 hover:scale-[1.03] active:scale-[1.0];
+  @apply bg-gray-200 hover:bg-gray-300 active:scale-[0.98];
 }
+
+.button-dark {
+  @apply text-zinc-50 bg-zinc-600 hover:bg-zinc-700 active:scale-[0.98];
+}
+
 .button-yellow {
-  @apply bg-yellow-200 hover:bg-yellow-300 hover:scale-[1.03] active:scale-[1.0];
+  @apply bg-yellow-200 hover:bg-yellow-300 active:scale-[0.98];
 }
-.button-red {
-  @apply bg-red-200 hover:bg-red-300 hover:scale-[1.03] active:scale-[1.0];
-}
+
 .button-blue {
-  @apply bg-blue-200 hover:bg-blue-300 hover:scale-[1.03] active:scale-[1.0];
+  @apply text-gray-50 bg-sky-500 hover:bg-sky-600 active:scale-[0.98];
 }
 .button-green {
-  @apply bg-emerald-200 hover:bg-emerald-300 hover:scale-[1.03] active:scale-[1.0];
+  @apply bg-emerald-200 hover:bg-emerald-300 active:scale-[0.98];
 }

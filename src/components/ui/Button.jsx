@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { DataContext } from '../../contexts/DataContext';
 
-export default function Button({children, type, size, targetForm, roundness, wFit, hFit, buttonColor, onClickFunction, icon, textColor}) {
+export default function Button({children, type, size, targetForm, roundness, wFit, hFit, buttonColor, onClickFunction, icon}) {
   const { loading, initialLoading } = useContext(DataContext);
 
   return (
@@ -16,10 +16,9 @@ export default function Button({children, type, size, targetForm, roundness, wFi
         items-center 
         cursor-pointer 
         p-3
-        button-${buttonColor} 
-        text-${textColor} 
         transition-all 
         duration-100
+        button-${buttonColor} 
         ${wFit === 'container' && 'w-full'} 
         ${hFit === 'container' && 'h-full'} 
         ${roundness === 'full' ? 'rounded-full' : roundness === 'small' ? 'rounded-lg' : roundness === 'large' ? 'rounded-2xl' : 'rounded-0'}`}

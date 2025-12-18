@@ -21,7 +21,7 @@ export default function ConfirmDiscardAddingModal() {
                 <Button
                     type={"text"}
                     size={"large"}
-                    buttonColor={"gray"}
+                    buttonColor={"secondary"}
                     roundness={"large"}
                     onClickFunction={() => handleModals("close", modalID)}
                 >
@@ -30,7 +30,7 @@ export default function ConfirmDiscardAddingModal() {
                 <Button
                     type={"combined"}
                     size={"large"}
-                    buttonColor={"red"}
+                    buttonColor={"primary"}
                     icon={"x-lg"}
                     textColor={"white"}
                     roundness={"large"}

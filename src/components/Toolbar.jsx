@@ -19,13 +19,13 @@ export default function Toolbar() {
                     <Button
                         type={"icon"}
                         icon={"funnel"}
-                        buttonColor={"gray"}
+                        buttonColor={"secondary"}
                         roundness={"large"}
                     />
                     <Button
                         type={"icon"}
                         icon={"sort-down"}
-                        buttonColor={"gray"}
+                        buttonColor={"secondary"}
                         roundness={"large"}
                     />
                 </div>
@@ -35,7 +35,7 @@ export default function Toolbar() {
                 <Button
                     type={"combined"}
                     icon={"plus-circle"}
-                    buttonColor={"red"}
+                    buttonColor={"primary"}
                     roundness={"large"}
                     onClickFunction={() => handleModals("open", "addGuest")}
                 >

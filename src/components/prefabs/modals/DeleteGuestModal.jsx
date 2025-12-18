@@ -6,28 +6,23 @@ import LoadingOverlay from "../../ui/LoadingOverlay";
 import { DataContext } from "../../../contexts/DataContext";
 import { useContext, useRef } from "react";
 import { useHandleModals } from "../../../hooks/useHandleModals";
+import { useDialog } from "../../../hooks/useDialog";
 
 export default function DeleteGuestModal() {
-    const { guests, selectedCard, loading, deleteGuest } = useContext(DataContext);
-    const guestToDelete = useRef(selectedCard)
-    const selectedGuestData = guests.find((g) => g.id === guestToDelete.current);
+    const { guests, selectedCard, loading, error, deleteGuest } = useContext(DataContext);
+    const guestToDeleteData = useRef(guests.find((g) => g.id === selectedCard));
     const handleModals = useHandleModals();
+    const { openDialog } = useDialog();
     const modalID = 'confirmDeleteGuest';
-
+            
     return (
         <Modal id={modalID} title={"Eliminar Invitado"}>
             <ModalBody>
                 <div className="text-center">
                     <p className="mb-4">Vas a eliminar a:</p>
-                    <h3 className="uppercase mb-2 bg-gray-200 rounded-lg p-2">
-                        {selectedGuestData
-                            ? `${selectedGuestData.name} ${selectedGuestData.lastName}`
-                            : ""}
+                    <h3 className="uppercase mb-4 bg-gray-100 rounded-lg p-2">
+                        {`${guestToDeleteData.current.name} ${guestToDeleteData.current.lastName}`}
                     </h3>
-                    <p className="mb-4 text-red text-xs">
-                        <i className="bi bi-exclamation-triangle me-2"></i>Esta acción NO se
-                        puede deshacer.
-                    </p>
                     <p>
                         Podrás agregarlo otra vez y enviarle un nuevo enlace si lo deseas.
                     </p>
@@ -37,27 +32,30 @@ export default function DeleteGuestModal() {
                 <Button
                     type={"text"}
                     size={"large"}
-                    buttonColor={"gray"}
+                    buttonColor={"secondary"}
                     roundness={"large"}
                     onClickFunction={() => handleModals("close", modalID)}
                 >
-                    Cancelar
+                    Conservar Invitado
                 </Button>
                 <Button
                     type={"combined"}
                     size={"large"}
-                    buttonColor={"red"}
+                    buttonColor={"secondary-danger"}
                     icon={"trash3"}
-                    textColor={"white"}
                     roundness={"large"}
                     onClickFunction={() => {
-                        // Lógica para eliminar el invitado
-                        handleModals("close", modalID);
-                        deleteGuest(guestToDelete.current);
+                        deleteGuest(
+                            guestToDeleteData.current.id,
+                            () => openDialog('success', `Eliminaste a ${guestToDeleteData.current.name.toUpperCase()} ${guestToDeleteData.current.lastName.toUpperCase()} de la lista`),
+                            () => openDialog('error', 'Se produjo un error al guardar los cambios. Inténtalo nuevamente.'),
+                            () => handleModals("close", modalID)
+                        );
                     }}
                 >
-                    Sí, eliminar
+                    Eliminar
                 </Button>
+                
             </ModalFooter>
             {loading && <LoadingOverlay text={"Eliminando Invitado"} />}
         </Modal>

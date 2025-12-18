@@ -3,9 +3,11 @@ import ModalBody from "../../modal/ModalBody";
 import ModalFooter from "../../modal/ModalFooter";
 import Button from "../../ui/Button";
 import { useHandleModals } from "../../../hooks/useHandleModals";
+import { useDialog } from "../../../hooks/useDialog";
 
 export default function ConfirmDiscardEditingModal() {
     const handleModals = useHandleModals();
+    const { openDialog } = useDialog();
     const modalID = 'confirmDiscardEditing';
 
     return (
@@ -21,7 +23,7 @@ export default function ConfirmDiscardEditingModal() {
                 <Button
                     type={"text"}
                     size={"large"}
-                    buttonColor={"gray"}
+                    buttonColor={"secondary"}
                     roundness={"large"}
                     onClickFunction={() => handleModals("close", modalID)}
                 >
@@ -30,13 +32,13 @@ export default function ConfirmDiscardEditingModal() {
                 <Button
                     type={"combined"}
                     size={"large"}
-                    buttonColor={"red"}
+                    buttonColor={"primary"}
                     icon={"x-lg"}
-                    textColor={"white"}
                     roundness={"large"}
                     onClickFunction={() => {
                         handleModals("close", modalID)
                         handleModals("close", "editGuest")
+                        openDialog('info', 'Se descartaron los cambios')
                     }}
                 >
                     Descartar

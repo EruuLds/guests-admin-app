@@ -33,7 +33,7 @@ export default function AddGuestModal() {
             <ModalFooter alignment={"end"}>
                 <Button
                     type={"text"}
-                    buttonColor={"gray"}
+                    buttonColor={"secondary"}
                     roundness={"large"}
                     onClickFunction={
                         dirtyForms.some(df => df === formID)
@@ -45,7 +45,7 @@ export default function AddGuestModal() {
                 </Button>
                 <Button
                     type={"combined"}
-                    buttonColor={"red"}
+                    buttonColor={"primary"}
                     icon={"plus-circle"}
                     roundness={"large"}
                     targetForm={formID}

@@ -4,6 +4,7 @@ import { DataContext } from '../../../contexts/DataContext';
 import { useContext, useEffect, useRef } from 'react';
 import { useHandleModals } from '../../../hooks/useHandleModals';
 import { useHandleDirtyForms } from '../../../hooks/useHandleDirtyForms';
+import { useDialog } from '../../../hooks/useDialog';
 
 export default function GuestForm({formType, formId}) {
   const { guests, selectedCard, addGuest, updateGuest } = useContext(DataContext);
@@ -14,6 +15,7 @@ export default function GuestForm({formType, formId}) {
 
   const handleModals = useHandleModals();
   const handleDirtyForms = useHandleDirtyForms();
+  const { openDialog } = useDialog();
   
   const { register, handleSubmit, watch, setValue, formState: { errors, isDirty } } = useForm({defaultValues: {...defaultData}});
   const passesValue = watch("passes");
@@ -44,9 +46,20 @@ export default function GuestForm({formType, formId}) {
   
   const submitData = (data) => {
     if (formType === 'add') {
-      addGuest(data, () => {handleModals('close', 'addGuest');});
+      addGuest(
+        data,
+        () => openDialog('success', `Anadiste a ${data.name.toUpperCase()} ${data.lastName.toUpperCase()} a la lista`),
+        () => openDialog('error', 'Se produjo un error al añadir al invitado a la lista. Inténtalo nuevamente.'),
+        () => handleModals('close', 'addGuest')
+      );
     } else if (formType === 'edit') {
-      updateGuest(guestToEdit.current, data, () => {handleModals('close', 'editGuest');});
+      updateGuest(
+        guestToEdit.current, 
+        data,
+        () => openDialog('success', `Guardaste los cambios para ${data.name.toUpperCase()} ${data.lastName.toUpperCase()}`),
+        () => openDialog('error', 'Se produjo un error al guardar los cambios. Inténtalo nuevamente.'),
+        () => handleModals('close', 'editGuest')
+      );
     }
   };
 
@@ -84,18 +97,18 @@ export default function GuestForm({formType, formId}) {
           <div className='col-span-3 lg:col-span-1' >
             <label className='text-center' htmlFor="passes">Pases</label>
             <div className='flex gap-2 items-center justify-center'>
-              <Button type={'icon'} size={'small'} icon={'dash'} buttonColor={'gray'} roundness={'full'} onClickFunction={decrementPasses} />
+              <Button type={'icon'} size={'small'} icon={'dash-lg'} buttonColor={'primary-subtle'} roundness={'full'} onClickFunction={decrementPasses} />
               <input id='passes' className='grow w-full' type="number" value={passesValue} readOnly {...register("passes", {valueAsNumber: true})}/>
-              <Button type={'icon'} size={'small'} icon={'plus'} buttonColor={'gray'} roundness={'full'} onClickFunction={incrementPasses} />
+              <Button type={'icon'} size={'small'} icon={'plus-lg'} buttonColor={'primary-subtle'} roundness={'full'} onClickFunction={incrementPasses} />
             </div>
           </div>
 
           <div className='col-span-3 lg:col-span-1 gap-2'>
             <label className='text-center' htmlFor="table">Mesa</label>
             <div className='flex gap-2 items-center justify-center'>
-              <Button type={'icon'} size={'small'} icon={'dash'} buttonColor={'gray'} roundness={'full'} onClickFunction={decrementTable} />
+              <Button type={'icon'} size={'small'} icon={'dash-lg'} buttonColor={'primary-subtle'} roundness={'full'} onClickFunction={decrementTable} />
               <input id='table' className='grow w-full' type="number" value={tableValue} readOnly {...register("table", {valueAsNumber: true})}/>
-              <Button type={'icon'} size={'small'} icon={'plus'} buttonColor={'gray'} roundness={'full'} onClickFunction={incrementTable} />
+              <Button type={'icon'} size={'small'} icon={'plus-lg'} buttonColor={'primary-subtle'} roundness={'full'} onClickFunction={incrementTable} />
             </div>
           </div>
         </div>
