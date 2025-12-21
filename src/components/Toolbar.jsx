@@ -12,35 +12,37 @@ export default function Toolbar() {
     }
 
     return (
-        <div className="responsive-container flex justify-between gap-4 py-8 sticky top-0 z-[100] bg-linear-to-b from-white from-50% via-white via-75% to-white/0 to-100%">
-            <div className="flex gap-4 w-full sm:w-fit">
-                <input className="search-input" type="text" onChange={e => updateSearchData(e.target.value)} placeholder='Buscar Invitado' />
-                <div className="flex gap-4">
-                    <Button
-                        type={"icon"}
-                        icon={"funnel"}
-                        buttonColor={"secondary"}
-                        roundness={"large"}
-                    />
-                    <Button
-                        type={"icon"}
-                        icon={"sort-down"}
-                        buttonColor={"secondary"}
-                        roundness={"large"}
-                    />
+        <div className="sticky top-0 z-[100] bg-white">
+            <div className="flex justify-between gap-4 py-4">
+                <div className="flex gap-4 w-full sm:w-fit">
+                    <input className="search-input" type="text" onChange={e => updateSearchData(e.target.value)} placeholder='Buscar Invitación' />
+                    <div className="flex gap-4">
+                        <Button
+                            type={"icon"}
+                            icon={"funnel"}
+                            buttonColor={"secondary"}
+                            roundness={"large"}
+                        />
+                        <Button
+                            type={"icon"}
+                            icon={"sort-down"}
+                            buttonColor={"secondary"}
+                            roundness={"large"}
+                        />
+                    </div>
+                    
                 </div>
-                
-            </div>
-            <div className="hidden sm:block">
-                <Button
-                    type={"combined"}
-                    icon={"plus-circle"}
-                    buttonColor={"primary"}
-                    roundness={"large"}
-                    onClickFunction={() => handleModals("open", "addGuest")}
-                >
-                    Añadir Invitado
-                </Button>
+                <div className="hidden sm:block">
+                    <Button
+                        type={"combined"}
+                        icon={"plus-circle"}
+                        buttonColor={"primary"}
+                        roundness={"large"}
+                        onClickFunction={() => handleModals("open", "addGuest")}
+                    >
+                        Nueva Invitación
+                    </Button>
+                </div>
             </div>
         </div>
     );

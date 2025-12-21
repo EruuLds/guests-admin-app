@@ -37,12 +37,15 @@ export default function Modal({ id, card, title, children, onClose}) {
             standard-ease
             duration-500 
             overflow-hidden
+            max-w-[1280px]
+            sm:min-w-[30rem]
+            mx-auto
             ${
               card
                 ? `inset-x-0 rounded-tl-4xl rounded-tr-4xl ${
                     show ? "bottom-0" : "-bottom-full"
                   }`
-                : `rounded-4xl h-fit -translate-y-1/2 top-1/2 mx-[1rem] max-w-full sm:min-w-[30rem] ${
+                : `rounded-4xl h-fit -translate-y-1/2 top-1/2 ${
                     show ? "scale-none" : "scale-[0.9]"
                   }`
             }`}

@@ -1,5 +1,5 @@
-import GuestCard from "./prefabs/guest-card/GuestCard";
-import GuestCardSkeleton from "./prefabs/guest-card/GuestCardSkeleton";
+import GuestCard from "./prefabs/cards/GuestCard";
+import GuestCardSkeleton from "./prefabs/cards/GuestCardSkeleton";
 import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
 import { useFilteredAndSortedGuests } from "../hooks/useFilteredAndSortedGuests";
@@ -24,7 +24,7 @@ export default function GuestsList() {
             {initialLoading &&
                 Array.from({ length: 10 }).map((_, i) => <GuestCardSkeleton key={i} />)}
             {!initialLoading && guests.length === 0 && (
-                <div className="flex items-center flex-col text-center pt-25">
+                <div className="flex items-center flex-col text-center pt-25 select-none">
                     <h2 className="text-2xl mb-4 text-light-gray">
                         No hay invitados en tu lista
                     </h2>

@@ -17,6 +17,8 @@ export function DataContextProvider({ children }) {
 
   //Búsqueda, filtros y ordenamiento
   const [searchData, setSearchData] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("name-asc");
 
   // Leer invitados en tiempo real
   useEffect(() => {
@@ -100,7 +102,11 @@ export function DataContextProvider({ children }) {
       updateGuest,
       deleteGuest,
       searchData,
-      setSearchData
+      setSearchData,
+      statusFilter,
+      setStatusFilter,
+      sortBy,
+      setSortBy
     }}>
       {children}
     </DataContext.Provider>

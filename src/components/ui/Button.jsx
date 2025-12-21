@@ -19,6 +19,7 @@ export default function Button({children, type, size, targetForm, roundness, wFi
         transition-all 
         duration-100
         button-${buttonColor} 
+        ${type === 'icon' && 'aspect-square'}
         ${wFit === 'container' && 'w-full'} 
         ${hFit === 'container' && 'h-full'} 
         ${roundness === 'full' ? 'rounded-full' : roundness === 'small' ? 'rounded-lg' : roundness === 'large' ? 'rounded-2xl' : 'rounded-0'}`}
@@ -39,7 +40,6 @@ export default function Button({children, type, size, targetForm, roundness, wFi
             leading-none
             uppercase 
             tracking-wide 
-            font-extrabold 
             select-none
             ${size === 'small' ? 'text-sm' : 'text-base'}`}
           >
