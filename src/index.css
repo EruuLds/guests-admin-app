@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: "stack";
   src: url(assets/fonts/StackSansText-VariableFont_wght.ttf);
