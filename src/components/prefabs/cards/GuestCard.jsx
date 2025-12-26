@@ -52,7 +52,7 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                     </div>
                 </div>
                 
-                <div className={`transition-all standard-ease duration-500 overflow-hidden ${isOpen ? "max-h-50" : "max-h-0"}`}>
+                <div className={`transition-all standard-ease duration-500 overflow-hidden ${isOpen ? "max-h-40" : "max-h-0"}`}>
                     <div className={`transition-opacity standard-ease duration-500 ${isOpen ? "opacity-100" : "opacity-0"} grid grid-cols-5 gap-4 mt-4`}>
                         <div className="flex grow items-center bg-white rounded-lg text-sm col-span-5 lg:col-span-3 overflow-hidden">
                             <div className="flex-none flex items-center h-full bg-zinc-200 px-2 py-1 uppercase text-zinc-500">

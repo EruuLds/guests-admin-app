@@ -8,6 +8,7 @@ import { DataContext } from "./contexts/DataContext";
 import { ModalContext } from "./contexts/ModalContext";
 import { useContext } from "react";
 import { useHandleModals } from "./hooks/useHandleModals";
+import { useMediaQuery } from "./hooks/useMediaQuery";
 import Navbar from "./components/prefabs/Navbar";
 
 import StatsCard from "./components/prefabs/cards/StatsCard";
@@ -17,6 +18,7 @@ function App() {
   const { openModals } = useContext(ModalContext);
   const { initialLoading } = useContext(DataContext);
   const guestStats = useGuestsStats();
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const handleModals = useHandleModals();
 
   return (
@@ -28,7 +30,7 @@ function App() {
         <main id="mainPanel" className="responsive-container pb-4 flex-1 md:overflow-y-hidden">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-full">
             <div className="h-full md:overflow-y-scroll">
-              <h3 className="mb-4 py-6 border-b border-zinc-100 text-center">Personas en tu evento:</h3>
+              <h3 className="mb-4 py-6 border-b border-zinc-100 text-center">Seguimiento de invitaciones:</h3>
               <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 h-fit">
                 <StatsCard dataName={'Total'} data={guestStats.totalPasses} />
                 <StatsCard dataName={'Confirmadas'} data={guestStats.confirmedPasses} />
@@ -37,9 +39,13 @@ function App() {
               </div>
             </div>
             <div className="md:col-span-2 h-full md:overflow-y-hidden">
-              <Toolbar />
-              <div className="h-full md:overflow-y-scroll rounded-2xl">
-                <GuestsList id="guestList" />
+              <div className="h-full flex flex-col">
+                <div className="mb-4 md:mb-0 border-b border-zinc-100 md:border-none sticky top-0 z-[100]">
+                  <Toolbar />
+                </div>
+                <div className="flex-1 md:overflow-y-scroll rounded-2xl">
+                  <GuestsList id="guestList" />
+                </div>
               </div>
             </div>
           </div>

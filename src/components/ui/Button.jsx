@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { DataContext } from '../../contexts/DataContext';
 
-export default function Button({children, type, size, targetForm, roundness, wFit, hFit, buttonColor, onClickFunction, icon}) {
+export default function Button({children, type, size, targetForm, roundness, wFit, hFit, buttonColor, onClickFunction, icon, listed}) {
   const { loading, initialLoading } = useContext(DataContext);
 
   return (
@@ -11,14 +11,14 @@ export default function Button({children, type, size, targetForm, roundness, wFi
       onClick={onClickFunction}
       disabled={(loading || initialLoading )}
       className={`
-        flex 
-        justify-center 
+        flex
         items-center 
         cursor-pointer 
         p-3
         transition-all 
         duration-100
         button-${buttonColor} 
+        ${listed ? 'justify-start' : 'justify-center'}
         ${type === 'icon' && 'aspect-square'}
         ${wFit === 'container' && 'w-full'} 
         ${hFit === 'container' && 'h-full'} 
@@ -36,11 +36,10 @@ export default function Button({children, type, size, targetForm, roundness, wFi
         }
         {(type === 'text' || type === 'combined') &&
           <span className={`
-            line-clamp-none
             leading-none
-            uppercase 
-            tracking-wide 
             select-none
+            text-nowrap
+            ${!listed && 'uppercase tracking-wide'}
             ${size === 'small' ? 'text-sm' : 'text-base'}`}
           >
             {children}
