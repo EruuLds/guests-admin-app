@@ -1,0 +1,156 @@
+@font-face {
+  font-family: "stack";
+  src: url(assets/fonts/StackSansText-VariableFont_wght.ttf);
+}
+
+@import "bootstrap-icons";
+
+@import "tailwindcss";
+
+@theme {
+  --font-display: "stack", sans-serif;
+  --standard-ease: cubic-bezier(0.5,0,0.5,1)
+  --text-dark: var(text-zinc-950);
+}
+
+:root {
+  scroll-behavior: smooth;
+  font-family: var(--font-display);
+  font-weight: 400;
+  @apply text-zinc-800
+}
+
+#root {
+  min-height: 100dvh;
+  width: 100%;
+  /*overflow-y: hidden;*/
+}
+
+body {
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  @apply leading-none
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  @apply leading-none
+}
+h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  @apply leading-none
+}
+
+p {
+  margin: 0;
+}
+
+input {
+  @apply w-full line-clamp-none leading-none bg-zinc-100 hover:bg-zinc-200 rounded-lg p-3 outline-offset-2 focus:outline-2 focus:outline-rose-400
+}
+
+input.search-input {
+  @apply rounded-2xl
+}
+
+label {
+  @apply mb-2 block
+}
+
+/* Centrar el texto */
+input[type="number"] {
+  text-align: center;
+}
+
+/* Quitar flechas en Chrome, Safari, Edge (WebKit) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Quitar flechas en Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.bg-stripes {
+  background-image: url('/public/img/stripes.svg');
+  background-repeat: repeat;
+}
+
+.responsive-container {
+  @apply @container px-[1rem] sm:px-[1.5rem] md:px-[1.5rem] lg:px-[3rem] max-w-[1280px] w-full max-w-[1280px] mx-auto
+}
+
+.text-light {
+  @apply text-zinc-50;
+}
+
+.text-light-gray {
+  @apply text-gray-400;
+}
+
+.text-yellow {
+  @apply text-yellow-600;
+}
+.text-red {
+  @apply text-red-700;
+}
+.text-blue {
+  @apply text-sky-600;
+}
+.text-green {
+  @apply text-emerald-600;
+}
+
+
+.button-primary {
+  @apply text-zinc-50 bg-rose-400 hover:bg-rose-500 active:scale-[0.98];
+}
+.button-primary-subtle {
+  @apply text-zinc-50 bg-rose-300 hover:bg-rose-400 active:scale-[0.98];
+}
+.button-secondary {
+  @apply bg-zinc-100 hover:bg-zinc-200 active:scale-[0.98];
+}
+.button-secondary-danger {
+  @apply text-red-700 bg-zinc-100 hover:bg-zinc-200 active:scale-[0.98];
+}
+
+
+
+.button-white {
+  @apply text-zinc-950 bg-white hover:bg-zinc-50 active:scale-[0.98];
+}
+
+.button-white-danger {
+  @apply text-red-700 bg-white hover:bg-gray-50 active:scale-[0.98];
+}
+
+.button-whatsapp {
+  @apply text-gray-50 bg-emerald-400 hover:bg-emerald-500 active:scale-[0.98];
+}
+
+.button-dark-gray {
+  @apply bg-gray-200 hover:bg-gray-300 active:scale-[0.98];
+}
+
+.button-dark {
+  @apply text-zinc-50 bg-zinc-600 hover:bg-zinc-700 active:scale-[0.98];
+}
+
+.button-yellow {
+  @apply bg-yellow-200 hover:bg-yellow-300 active:scale-[0.98];
+}
+
+.button-blue {
+  @apply text-gray-50 bg-sky-500 hover:bg-sky-600 active:scale-[0.98];
+}
+.button-green {
+  @apply bg-emerald-200 hover:bg-emerald-300 active:scale-[0.98];
+}
