@@ -1,11 +1,11 @@
+@import "tailwindcss";
+
 @font-face {
   font-family: "stack";
   src: url(assets/fonts/StackSansText-VariableFont_wght.ttf);
 }
 
 @import "bootstrap-icons";
-
-@import "tailwindcss";
 
 @theme {
   --font-display: "stack", sans-serif;
