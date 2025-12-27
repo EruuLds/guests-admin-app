@@ -8,7 +8,6 @@ import { DataContext } from "./contexts/DataContext";
 import { ModalContext } from "./contexts/ModalContext";
 import { useContext } from "react";
 import { useHandleModals } from "./hooks/useHandleModals";
-import { useMediaQuery } from "./hooks/useMediaQuery";
 import Navbar from "./components/prefabs/Navbar";
 
 import StatsCard from "./components/prefabs/cards/StatsCard";
@@ -18,7 +17,6 @@ function App() {
   const { openModals } = useContext(ModalContext);
   const { initialLoading } = useContext(DataContext);
   const guestStats = useGuestsStats();
-  const isMobile = useMediaQuery("(max-width: 768px)");
   const handleModals = useHandleModals();
 
   return (
