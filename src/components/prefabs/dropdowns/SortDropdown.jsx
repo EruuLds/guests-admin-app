@@ -13,6 +13,7 @@ export default function SortDropdown() {
             <Button
                 type={"icon"}
                 icon={"sort-down"}
+                hFit={'container'}
                 buttonColor={"secondary"}
                 roundness={"large"}
                 onClickFunction={() => handleDropdowns("sortBy")}
@@ -21,70 +22,68 @@ export default function SortDropdown() {
                 <div className="mb-2">
                     <p className="text-center">Ordenar por:</p>
                 </div>
-                <Button
-                    type={"text"}
-                    wFit={"container"}
-                    roundness={"small"}
-                    buttonColor={"secondary"}
-                    listed
-                    onClickFunction={() => {
-                        setSortBy("name-asc");
-                        handleDropdowns('sortBy');
-                    }}
-                >
-                    <div className="flex">
-                        <p>Nombre (ascendente)</p>
-                        {sortBy === 'name-asc' && <i className="bi bi-check-circle-fill text-green ms-2"></i>}
-                    </div>
-                </Button>
-                <Button
-                    type={"text"}
-                    wFit={"container"}
-                    roundness={"small"}
-                    buttonColor={"secondary"}
-                    listed
-                    onClickFunction={() => {
-                        setSortBy("name-desc");
-                        handleDropdowns('sortBy');
-                    }}
-                >
-                    <div className="flex">
-                        <p>Nombre (descendente)</p>
-                        {sortBy === 'name-desc' && <i className="bi bi-check-circle-fill text-green ms-2"></i>}
-                    </div>
-                </Button>
-                <Button
-                    type={"text"}
-                    wFit={"container"}
-                    roundness={"small"}
-                    buttonColor={"secondary"}
-                    listed
-                    onClickFunction={() => {
-                        setSortBy("table-asc");
-                        handleDropdowns('sortBy');
-                    }}
-                >
-                    <div className="flex">
-                        <p>Mesa (ascendente)</p>
-                        {sortBy === 'table-asc' && <i className="bi bi-check-circle-fill text-green ms-2"></i>}
-                    </div>
-                </Button>
-                <Button
-                    type={"text"}
-                    wFit={"container"}
-                    roundness={"small"}
-                    buttonColor={"secondary"}
-                    listed
-                    onClickFunction={() => {
-                        setSortBy("table-desc");
-                        handleDropdowns('sortBy');
-                    }}
-                >
-                    <div className="flex">
-                        <p>Mesa (descendente)</p>
-                        {sortBy === 'table-desc' && <i className="bi bi-check-circle-fill text-green ms-2"></i>}
-                    </div>
-                </Button>
+                <div className="overflow-hidden rounded-lg">
+                    <Button
+                        type={"text"}
+                        wFit={"container"}
+                        buttonColor={"secondary"}
+                        listed
+                        onClickFunction={() => {
+                            setSortBy("name-asc");
+                            handleDropdowns('sortBy');
+                        }}
+                    >
+                        <div className="flex">
+                            <p>Nombre (ascendente)</p>
+                            {sortBy === 'name-asc' && <i className="bi bi-check-circle-fill text-rose ms-2"></i>}
+                        </div>
+                    </Button>
+                    <Button
+                        type={"text"}
+                        wFit={"container"}
+                        buttonColor={"secondary"}
+                        listed
+                        onClickFunction={() => {
+                            setSortBy("name-desc");
+                            handleDropdowns('sortBy');
+                        }}
+                    >
+                        <div className="flex">
+                            <p>Nombre (descendente)</p>
+                            {sortBy === 'name-desc' && <i className="bi bi-check-circle-fill text-rose ms-2"></i>}
+                        </div>
+                    </Button>
+                    <Button
+                        type={"text"}
+                        wFit={"container"}
+                        buttonColor={"secondary"}
+                        listed
+                        onClickFunction={() => {
+                            setSortBy("table-asc");
+                            handleDropdowns('sortBy');
+                        }}
+                    >
+                        <div className="flex">
+                            <p>Mesa (ascendente)</p>
+                            {sortBy === 'table-asc' && <i className="bi bi-check-circle-fill text-rose ms-2"></i>}
+                        </div>
+                    </Button>
+                    <Button
+                        type={"text"}
+                        wFit={"container"}
+                        buttonColor={"secondary"}
+                        listed
+                        onClickFunction={() => {
+                            setSortBy("table-desc");
+                            handleDropdowns('sortBy');
+                        }}
+                    >
+                        <div className="flex">
+                            <p>Mesa (descendente)</p>
+                            {sortBy === 'table-desc' && <i className="bi bi-check-circle-fill text-rose ms-2"></i>}
+                        </div>
+                    </Button>
+                </div>
             </SelectList>
             <span className={`absolute size-3 bg-rose-400 rounded-full end-0 top-0 transition-scale duration-150 ease-(--standard-ease) ${sortBy !== 'name-asc' ? 'scale-100' : 'scale-0'}`}></span>
         </div>

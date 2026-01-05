@@ -26,20 +26,19 @@ export default function Button({children, type, size, targetForm, roundness, wFi
       >
         {(type === 'icon' || type === 'combined') &&
           <i className={`
-            line-clamp-none
-            leading-none
             button-icon 
+            leading-3
             ${type === 'combined' && 'me-2'} 
             bi bi-${icon} 
-            ${size === 'small' ? 'text-base' : 'text-2xl'}`}
+            ${size === 'small' ? 'text-sm' : 'text-base'}`}
           ></i>
         }
         {(type === 'text' || type === 'combined') &&
           <span className={`
-            leading-none
             select-none
             text-nowrap
-            ${!listed && 'uppercase tracking-wide'}
+            ${size === 'small' ? 'leading-3' : 'leading-5'}
+            ${!listed && 'uppercase'}
             ${size === 'small' ? 'text-sm' : 'text-base'}`}
           >
             {children}

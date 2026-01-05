@@ -54,7 +54,7 @@ input.search-input {
 }
 
 label {
-  @apply mb-2 block;
+  @apply mb-0 block;
 }
 
 /* Centrar el texto */
@@ -74,25 +74,27 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+.standard-ease {
+  transition-timing-function: var(--standard-ease);
+}
+
 .bg-stripes {
   background-image: url('/public/img/stripes.svg');
   background-repeat: repeat;
 }
 
 .responsive-container {
-  @apply @container px-[1rem] sm:px-[1.5rem] md:px-[1.5rem] lg:px-[3rem] max-w-[1280px] w-full max-w-[1280px] mx-auto;
+  @apply @container px-[1rem] sm:px-[1.5rem] md:px-[1.5rem] lg:px-[3rem] sm:max-w-[1280px] w-full mx-auto;
 }
 
 .text-light {
   @apply text-zinc-50;
 }
-
 .text-light-gray {
   @apply text-gray-400;
 }
-
-.text-yellow {
-  @apply text-yellow-600;
+.text-rose {
+  @apply text-rose-400;
 }
 .text-red {
   @apply text-red-700;

@@ -11,7 +11,7 @@ export default function GuestsList() {
     return (
         <>
             {(error && guests.length === 0) &&
-                <div className="flex items-center flex-col text-center pt-25">
+                <div className="flex items-center flex-col text-center pt-10">
                     <h2 className="text-2xl mb-4 text-light-gray">
                         Se produjo un error al obtener los datos.
                     </h2>
@@ -23,7 +23,7 @@ export default function GuestsList() {
             {initialLoading &&
                 Array.from({ length: 10 }).map((_, i) => <GuestCardSkeleton key={i} />)}
             {!initialLoading && !error && guests.length === 0 && (
-                <div className="flex items-center flex-col text-center pt-25 select-none">
+                <div className="flex items-center flex-col text-center pt-10 select-none">
                     <h2 className="text-2xl mb-4 text-light-gray">
                         No hay invitados en tu lista
                     </h2>
@@ -37,7 +37,7 @@ export default function GuestsList() {
                 </div>
             )}
             {(guests.length > 0 && filteredAndSortedGuests.length === 0 && statusFilter !== 'all' && searchData === '') &&
-                <div className="flex items-center flex-col text-center pt-25">
+                <div className="flex items-center flex-col text-center pt-10">
                     <h2 className="text-2xl mb-4 text-light-gray">
                         Nada por aquí aún...
                     </h2>
@@ -47,7 +47,7 @@ export default function GuestsList() {
                 </div>
             }
             {(guests.length > 0 && filteredAndSortedGuests.length === 0 && searchData !== '') &&
-                <div className="flex items-center flex-col text-center pt-25">
+                <div className="flex items-center flex-col text-center pt-10">
                     <h2 className="text-2xl mb-4 text-light-gray">
                         Sin resultados para "{searchData}".
                     </h2>

@@ -7,6 +7,7 @@ import { DataContext } from "../../../contexts/DataContext";
 import { useContext, useRef } from "react";
 import { useHandleModals } from "../../../hooks/useHandleModals";
 import { useDialog } from "../../../hooks/useDialog";
+import { useMediaQuery } from "../../../hooks/useMediaQuery";
 
 export default function DeleteGuestModal() {
     const { guests, selectedCard, loading, error, deleteGuest } = useContext(DataContext);
@@ -14,18 +15,24 @@ export default function DeleteGuestModal() {
     const handleModals = useHandleModals();
     const { openDialog } = useDialog();
     const modalID = 'confirmDeleteGuest';
+    const isMobile = useMediaQuery("(max-width: 448px)");
             
     return (
         <Modal id={modalID} title={"Eliminar Invitado"}>
             <ModalBody>
                 <div className="text-center">
-                    <p className="mb-4">Vas a eliminar a:</p>
-                    <h3 className="uppercase mb-4 bg-gray-100 rounded-lg p-2">
-                        {`${guestToDeleteData.current.name} ${guestToDeleteData.current.lastName}`}
-                    </h3>
-                    <p>
-                        Podrás agregarlo otra vez y enviarle un nuevo enlace si lo deseas.
-                    </p>
+                    <div className="mb-3">
+                        <p >Vas a eliminar a:</p>
+                    </div>
+                    <div className="mb-3">
+                        <p className="bg-gray-100 rounded-lg p-2 text-xl font-semibold">
+                            {`${guestToDeleteData.current.name} ${guestToDeleteData.current.lastName}`}
+                        </p>
+                    </div>
+                    <div>
+                        <p>Podrás agregarlo otra vez y enviarle un nuevo enlace si lo deseas.</p>
+                    </div>
+                    
                 </div>
             </ModalBody>
             <ModalFooter alignment={"center"}>
@@ -34,6 +41,7 @@ export default function DeleteGuestModal() {
                     size={"large"}
                     buttonColor={"secondary"}
                     roundness={"large"}
+                    wFit={isMobile ? 'container' : 'content'}
                     onClickFunction={() => handleModals("close", modalID)}
                 >
                     Conservar Invitado
@@ -44,6 +52,7 @@ export default function DeleteGuestModal() {
                     buttonColor={"secondary-danger"}
                     icon={"trash3"}
                     roundness={"large"}
+                    wFit={isMobile ? 'container' : 'content'}
                     onClickFunction={() => {
                         deleteGuest(
                             guestToDeleteData.current.id,

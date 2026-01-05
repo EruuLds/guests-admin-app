@@ -48,7 +48,7 @@ export default function GuestForm({formType, formId}) {
     if (formType === 'add') {
       addGuest(
         data,
-        () => openDialog('success', `Añadiste a ${data.name.toUpperCase()} ${data.lastName.toUpperCase()} a la lista`),
+        () => openDialog('success', `Añadiste a ${data.name} ${data.lastName} a la lista`),
         () => openDialog('error', 'Se produjo un error al añadir al invitado a la lista. Inténtalo nuevamente.'),
         () => handleModals('close', 'addGuest')
       );
@@ -56,7 +56,7 @@ export default function GuestForm({formType, formId}) {
       updateGuest(
         guestToEdit.current, 
         data,
-        () => openDialog('success', `Guardaste los cambios para ${data.name.toUpperCase()} ${data.lastName.toUpperCase()}`),
+        () => openDialog('success', `Guardaste los cambios para ${data.name} ${data.lastName}`),
         () => openDialog('error', 'Se produjo un error al guardar los cambios. Inténtalo nuevamente.'),
         () => handleModals('close', 'editGuest')
       );
@@ -66,7 +66,7 @@ export default function GuestForm({formType, formId}) {
   return (
     <form id={formId} method='post' onSubmit={handleSubmit(submitData)}>
       <section>
-        <div className='grid grid-cols-6 gap-4'>
+        <div className='grid grid-cols-6 gap-3'>
          
          <div className='col-span-6 sm:col-span-3 lg:col-span-2' >
             <div className='flex'>

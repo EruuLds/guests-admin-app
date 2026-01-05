@@ -7,6 +7,7 @@ export const DataContext = createContext();
 export function DataContextProvider({ children }) {
   const customInvitationURL = 'https://demo-invitation.netlify.app';
   const [selectedCard, setSelectedCard] = useState(null);
+  const [showDashboard, setShowDashboard] = useState(false);
   const [dirtyForms, setDirtyForms] = useState([])
 
   // Invitados
@@ -91,6 +92,8 @@ export function DataContextProvider({ children }) {
     <DataContext.Provider value={{
       selectedCard,
       setSelectedCard,
+      showDashboard,
+      setShowDashboard,
       dirtyForms,
       setDirtyForms,
       customInvitationURL,

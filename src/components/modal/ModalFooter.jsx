@@ -5,6 +5,7 @@ export default function ModalFooter({children, alignment}) {
             flex 
             p-8
             gap-4
+            flex-wrap
             ${alignment === 'start' && 'justify-start'}
             ${alignment === 'center' && 'justify-center'}
             ${alignment === 'end' && 'justify-end'}

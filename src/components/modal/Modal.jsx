@@ -4,12 +4,14 @@ import { useContext } from "react";
 import { ModalContext } from "../../contexts/ModalContext";
 import { DataContext } from "../../contexts/DataContext";
 import { useHandleModals } from "../../hooks/useHandleModals";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 export default function Modal({ id, card, title, children, onClose}) {
   const { visibleModals } = useContext(ModalContext);
   const { loading } = useContext(DataContext);
   const show = visibleModals.some((modal) => modal === id);
   const handleModals = useHandleModals();
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   return ReactDOM.createPortal(
     <div
@@ -23,6 +25,7 @@ export default function Modal({ id, card, title, children, onClose}) {
         bg-black/20 
         transition-all 
         duration-500 
+        ${(!card && isMobile) && 'responsive-container'}
         ${show ? "opacity-100" : "opacity-0"}`}
       onClick={!loading ? onClose ? onClose : () => handleModals("close", id) : undefined }
     >
@@ -37,7 +40,7 @@ export default function Modal({ id, card, title, children, onClose}) {
             standard-ease
             duration-500 
             overflow-hidden
-            max-w-[1280px]
+            sm:max-w-[1280px]
             sm:min-w-[30rem]
             mx-auto
             ${
@@ -45,7 +48,7 @@ export default function Modal({ id, card, title, children, onClose}) {
                 ? `inset-x-0 rounded-tl-4xl rounded-tr-4xl ${
                     show ? "bottom-0" : "-bottom-full"
                   }`
-                : `rounded-4xl h-fit -translate-y-1/2 top-1/2 ${
+                : `rounded-4xl -translate-y-1/2 top-1/2 ${
                     show ? "scale-none" : "scale-[0.9]"
                   }`
             }`}
