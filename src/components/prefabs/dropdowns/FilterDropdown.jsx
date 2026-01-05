@@ -27,7 +27,7 @@ export default function FilterDropdown() {
                         type={"text"}
                         wFit={"container"}
                         icon={"sort-alpha-down"}
-                        buttonColor={"secondary"}
+                        buttonColor={"white"}
                         listed
                         onClickFunction={() => {
                             setStatusFilter('all');
@@ -43,7 +43,7 @@ export default function FilterDropdown() {
                         type={"text"}
                         wFit={"container"}
                         icon={"sort-alpha-up"}
-                        buttonColor={"secondary"}
+                        buttonColor={"white"}
                         listed
                         onClickFunction={() => {
                             setStatusFilter('confirmed');
@@ -59,7 +59,7 @@ export default function FilterDropdown() {
                         type={"text"}
                         wFit={"container"}
                         icon={"sort-numeric-down"}
-                        buttonColor={"secondary"}
+                        buttonColor={"white"}
                         listed
                         onClickFunction={() => {
                             setStatusFilter('declined');
@@ -75,7 +75,7 @@ export default function FilterDropdown() {
                         type={"text"}
                         wFit={"container"}
                         icon={"sort-numeric-down"}
-                        buttonColor={"secondary"}
+                        buttonColor={"white"}
                         listed
                         onClickFunction={() => {
                             setStatusFilter('unconfirmed');

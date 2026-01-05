@@ -26,7 +26,7 @@ export default function SortDropdown() {
                     <Button
                         type={"text"}
                         wFit={"container"}
-                        buttonColor={"secondary"}
+                        buttonColor={"white"}
                         listed
                         onClickFunction={() => {
                             setSortBy("name-asc");
@@ -41,7 +41,7 @@ export default function SortDropdown() {
                     <Button
                         type={"text"}
                         wFit={"container"}
-                        buttonColor={"secondary"}
+                        buttonColor={"white"}
                         listed
                         onClickFunction={() => {
                             setSortBy("name-desc");
@@ -56,7 +56,7 @@ export default function SortDropdown() {
                     <Button
                         type={"text"}
                         wFit={"container"}
-                        buttonColor={"secondary"}
+                        buttonColor={"white"}
                         listed
                         onClickFunction={() => {
                             setSortBy("table-asc");
@@ -71,7 +71,7 @@ export default function SortDropdown() {
                     <Button
                         type={"text"}
                         wFit={"container"}
-                        buttonColor={"secondary"}
+                        buttonColor={"white"}
                         listed
                         onClickFunction={() => {
                             setSortBy("table-desc");
