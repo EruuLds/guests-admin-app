@@ -7,7 +7,7 @@ export default function Navbar() {
                         <img className="h-8 min-w-25" src="/img/invitex-logo.svg" alt="Invitex Logo" />
                     </a>
                     <div>
-                        <p>Nombre del evento</p>
+                        <p>Boda Ale&Luis</p>
                     </div>
                 </div>
             </nav>

@@ -20,7 +20,7 @@ export default function Toolbar() {
                     <div className="flex gap-4">
                         <FilterDropdown />
                         <SortDropdown />
-                        <input className="search-input grow" type="text" onChange={e => updateSearchData(e.target.value)} placeholder='Buscar Invitación' />
+                        <input className="search-input grow" type="text" onChange={e => updateSearchData(e.target.value)} placeholder='Buscar Invitación'/>
                     </div>
                 </div>
                 <div className="hidden sm:block">

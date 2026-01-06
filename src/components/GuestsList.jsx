@@ -12,21 +12,22 @@ export default function GuestsList() {
         <>
             {(error && guests.length === 0) &&
                 <div className="flex items-center flex-col text-center pt-10">
-                    <h2 className="text-2xl mb-4 text-light-gray">
+                    <h3 className="text-2xl mb-3 text-light-gray">
                         Se produjo un error al obtener los datos.
-                    </h2>
+                    </h3>
                     <p className="mb-8 text-light-gray">
                         Por favor, refresca la página
                     </p>
                 </div>
             }
             {initialLoading &&
-                Array.from({ length: 10 }).map((_, i) => <GuestCardSkeleton key={i} />)}
+                Array.from({ length: 10 }).map((_, i) => <GuestCardSkeleton key={i} />
+            )}
             {!initialLoading && !error && guests.length === 0 && (
                 <div className="flex items-center flex-col text-center pt-10 select-none">
-                    <h2 className="text-2xl mb-4 text-light-gray">
+                    <h3 className="text-2xl mb-3 text-light-gray">
                         No hay invitados en tu lista
-                    </h2>
+                    </h3>
                     <p className="mb-8 text-light-gray">
                         Empieza con "
                         <span className="uppercase">
@@ -38,9 +39,9 @@ export default function GuestsList() {
             )}
             {(guests.length > 0 && filteredAndSortedGuests.length === 0 && statusFilter !== 'all' && searchData === '') &&
                 <div className="flex items-center flex-col text-center pt-10">
-                    <h2 className="text-2xl mb-4 text-light-gray">
+                    <h3 className="text-2xl mb-3 text-light-gray">
                         Nada por aquí aún...
-                    </h2>
+                    </h3>
                     <p className="mb-8 text-light-gray">
                         Si algún invitado {statusFilter === 'confirmed' ? 'confirma su asistencia' : 'indica que no asistirá'}, aparecerá aquí.
                     </p>
@@ -48,9 +49,9 @@ export default function GuestsList() {
             }
             {(guests.length > 0 && filteredAndSortedGuests.length === 0 && searchData !== '') &&
                 <div className="flex items-center flex-col text-center pt-10">
-                    <h2 className="text-2xl mb-4 text-light-gray">
+                    <h3 className="text-2xl mb-3 text-light-gray">
                         Sin resultados para "{searchData}".
-                    </h2>
+                    </h3>
                     <p className="mb-8 text-light-gray">
                         Por favor, verifica la información de tu búsqueda.
                     </p>

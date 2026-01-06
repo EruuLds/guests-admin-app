@@ -25,7 +25,7 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
             <div className='p-3 text-start'>
                 <div className='grid grid-cols-5 gap-3'>
                     <div className='col-span-5 sm:col-span-3 bg-zinc-200 p-2 rounded-lg relative overflow-hidden'>
-                        <p className='uppercase text-xs leading-4 text-zinc-500 select-none'>Invitado</p>
+                        <p className='uppercase text-xs font-medium leading-4 text-zinc-500 select-none'>Invitado</p>
                         <p className='text-lg leading-5 truncate'>{guestName + ' ' + guestLastName}</p>
                         { confirmation !== undefined && 
                             <div className={`absolute flex justify-center items-center w-30 h-4 top-0 right-0 rounded-bl-lg ${confirmation ? 'bg-green-300' : 'bg-gray-300'}`}>
@@ -35,11 +35,11 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                     </div>
                     <div className='col-span-5 sm:col-span-2 grid grid-cols-5 gap-3'>
                         <div className='bg-zinc-200 p-2 rounded-lg col-span-2'>
-                            <p className='uppercase text-xs leading-4 text-zinc-500 select-none'>{confirmation ? 'Asisten' : 'Pases'}</p>
+                            <p className='uppercase text-xs font-medium leading-4 text-zinc-500 select-none'>{confirmation ? 'Asisten' : 'Pases'}</p>
                             <p className='text-lg leading-5'>{confirmation ? (confirmedPasses + '/' + passes) : passes}</p>
                         </div>
                         <div className='bg-zinc-200 p-2 rounded-lg col-span-2'>
-                            <p className='uppercase text-xs leading-4 text-zinc-500 select-none'>Mesa</p>
+                            <p className='uppercase text-xs font-medium leading-4 text-zinc-500 select-none'>Mesa</p>
                             <p className='text-lg leading-5'>{table == undefined ? '-' : table}</p>
                         </div>
                         <div className='col-span-1 flex justify-center items-middle'>
