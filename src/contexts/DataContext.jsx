@@ -7,7 +7,6 @@ export const DataContext = createContext();
 export function DataContextProvider({ children }) {
   const customInvitationURL = 'https://demo-invitation.netlify.app';
   const [selectedCard, setSelectedCard] = useState(null);
-  const [showDashboard, setShowDashboard] = useState(false);
   const [dirtyForms, setDirtyForms] = useState([])
 
   // Invitados
@@ -23,7 +22,7 @@ export function DataContextProvider({ children }) {
 
   // Leer invitados en tiempo real
   useEffect(() => {
-    const guestsRef = ref(database, "invitados");
+    const guestsRef = ref(database, "events/demo2026/guests");
     const unsubscribe = onValue(
       guestsRef,
       snapshot => {
@@ -49,7 +48,7 @@ export function DataContextProvider({ children }) {
   const addGuest = async (guestData, onSuccess, onError, onComplete) => {
     setLoading(true);
     try {
-      await push(ref(database, "invitados"), guestData);
+      await push(ref(database, "events/demo2026/guests"), guestData);
       onSuccess?.();
     } catch (err) {
       setError(err.message);
@@ -63,7 +62,7 @@ export function DataContextProvider({ children }) {
   const updateGuest = async (id, updatedData, onSuccess, onError, onComplete) => {
     setLoading(true);
     try {
-      await update(ref(database, `invitados/${id}`), updatedData);
+      await update(ref(database, `events/demo2026/guests/${id}`), updatedData);
       onSuccess?.();
     } catch (err) {
       setError(err.message);
@@ -77,7 +76,7 @@ export function DataContextProvider({ children }) {
   const deleteGuest = async (id, onSuccess, onError, onComplete) => {
     setLoading(true);
     try {
-      await remove(ref(database, `invitados/${id}`));
+      await remove(ref(database, `events/demo2026/guests/${id}`));
       onSuccess?.();
     } catch (err) {
       setError(err.message);
@@ -92,8 +91,6 @@ export function DataContextProvider({ children }) {
     <DataContext.Provider value={{
       selectedCard,
       setSelectedCard,
-      showDashboard,
-      setShowDashboard,
       dirtyForms,
       setDirtyForms,
       customInvitationURL,

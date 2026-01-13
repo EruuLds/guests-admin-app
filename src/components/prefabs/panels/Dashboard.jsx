@@ -2,12 +2,13 @@ import StatsCard from "../cards/StatsCard"
 import StatsCardSkeleton from "../cards/StatsCardSkeleton";
 import { DataContext } from "../../../contexts/DataContext";
 import { useGuestsStats } from "../../../hooks/useGuestStats"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
 
 export default function Dashboard() {
     const guestStats = useGuestsStats();
-    const { showDashboard, setShowDashboard, initialLoading } = useContext(DataContext);
+    const { initialLoading } = useContext(DataContext);
+    const [showDashboard, setShowDashboard] = useState(false)
     const isDropdown = useMediaQuery("(min-width: 768px)");
 
     return (
