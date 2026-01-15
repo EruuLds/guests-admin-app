@@ -3,7 +3,7 @@ import { DataContext } from "../contexts/DataContext";
 
 export function useShare(guestID) {
     const { customInvitationURL } = useContext(DataContext);
-    const guestShareableLink = customInvitationURL + '?data=' + btoa(guestID);
+    const guestShareableLink = customInvitationURL + '?id=' + guestID;
 
     const share = async () => {
     if (navigator.share) {

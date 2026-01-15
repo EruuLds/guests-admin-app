@@ -7,8 +7,7 @@ import { useHandleModals } from '../../../hooks/useHandleModals';
 export default function GuestCard({id, guestName, guestLastName, passes, table, confirmation, confirmedPasses, attendanceReg}) {
     const { selectedCard, setSelectedCard, customInvitationURL} = useContext(DataContext);
     const handleModals = useHandleModals();
-    //const guestURL = customInvitationURL + '?data=' + btoa(id);
-    const guestURL = customInvitationURL + '?data=' + btoa(`${id},${guestName + ' ' + guestLastName},${passes}`);
+    const guestURL = customInvitationURL + '?id=' + id;
     const isOpen = selectedCard === id;
 
     const share = useShare(id);
