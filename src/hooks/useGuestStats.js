@@ -14,17 +14,17 @@ export function useGuestsStats() {
         acc.totalPasses += passes;
 
         // Confirmados
-        if (guest.confirmation === true) {
+        if (guest.status === 'confirmed') {
           acc.confirmedPasses += confirmed;
         }
 
         // Pendientes
-        if (guest.confirmation === undefined) {
+        if (guest.status === 'pending') {
           acc.pendingPasses += passes;
         }
 
         // Rechazadas
-        if (guest.confirmation === false) {
+        if (guest.status === 'declined') {
           acc.declinedPasses += passes;
         }
 

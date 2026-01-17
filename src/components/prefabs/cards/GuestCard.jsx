@@ -4,7 +4,7 @@ import Button from '../../ui/Button';
 import { useShare } from '../../../hooks/useShare';
 import { useHandleModals } from '../../../hooks/useHandleModals';
 
-export default function GuestCard({id, guestName, guestLastName, passes, table, confirmation, confirmedPasses, attendanceReg}) {
+export default function GuestCard({id, guestName, guestLastName, passes, table, status, confirmedPasses}) {
     const { selectedCard, setSelectedCard, customInvitationURL} = useContext(DataContext);
     const handleModals = useHandleModals();
     const guestURL = customInvitationURL + '?id=' + id;
@@ -26,16 +26,16 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                     <div className='col-span-5 sm:col-span-3 bg-zinc-200 p-2 rounded-lg relative overflow-hidden'>
                         <p className='uppercase text-xs font-medium leading-4 text-zinc-500 select-none'>Invitado</p>
                         <p className='text-lg leading-5 truncate'>{guestName + ' ' + guestLastName}</p>
-                        { confirmation !== undefined && 
-                            <div className={`absolute flex justify-center items-center w-30 h-4 top-0 right-0 rounded-bl-lg ${confirmation ? 'bg-green-300' : 'bg-gray-300'}`}>
-                                <p className='text-xs uppercase mx-1 text-center select-none'>{confirmation ? 'Asistirá' : 'No Asistirá'}</p>
+                        { status !== "pending" && 
+                            <div className={`absolute flex justify-center items-center w-30 h-4 top-0 right-0 rounded-bl-lg ${status === 'confirmed' ? 'bg-green-300' : 'bg-gray-300'}`}>
+                                <p className='text-xs uppercase mx-1 text-center select-none'>{status === 'confirmed' ? 'Asistirá' : 'No Asistirá'}</p>
                             </div>
                         }
                     </div>
                     <div className='col-span-5 sm:col-span-2 grid grid-cols-5 gap-3'>
                         <div className='bg-zinc-200 p-2 rounded-lg col-span-2'>
-                            <p className='uppercase text-xs font-medium leading-4 text-zinc-500 select-none'>{confirmation ? 'Asisten' : 'Pases'}</p>
-                            <p className='text-lg leading-5'>{confirmation ? (confirmedPasses + '/' + passes) : passes}</p>
+                            <p className='uppercase text-xs font-medium leading-4 text-zinc-500 select-none'>{status === 'confirmed' ? 'Asisten' : 'Pases'}</p>
+                            <p className='text-lg leading-5'>{status === 'confirmed' ? (confirmedPasses + '/' + passes) : passes}</p>
                         </div>
                         <div className='bg-zinc-200 p-2 rounded-lg col-span-2'>
                             <p className='uppercase text-xs font-medium leading-4 text-zinc-500 select-none'>Mesa</p>
@@ -69,7 +69,7 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                 </div>
             </div>
 
-            {(confirmation !== undefined && !confirmation) &&
+            {status === 'declined' &&
                 <div className='absolute inset-0 bg-stripes opacity-50'></div>
             }
         </div>

@@ -65,10 +65,8 @@ export default function GuestsList() {
                     guestLastName={guest.lastName}
                     passes={guest.passes}
                     table={guest.table}
-                    confirmation={guest.confirmation}
+                    status={guest.status}
                     confirmedPasses={guest.confirmedPasses}
-                    attendanceReg={guest.attendanceReg}
-                    selectedCard={selectedCard}
                 />
             ))}
         </>

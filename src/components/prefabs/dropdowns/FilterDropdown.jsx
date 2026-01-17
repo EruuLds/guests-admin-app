@@ -78,7 +78,7 @@ export default function FilterDropdown() {
                         buttonColor={"white"}
                         listed
                         onClickFunction={() => {
-                            setStatusFilter('unconfirmed');
+                            setStatusFilter('pending');
                             handleDropdowns('filterBy');
                         }}
                     >

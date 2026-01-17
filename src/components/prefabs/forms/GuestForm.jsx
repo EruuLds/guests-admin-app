@@ -46,8 +46,14 @@ export default function GuestForm({formType, formId}) {
   
   const submitData = (data) => {
     if (formType === 'add') {
+      const payload = {
+        ...data,
+        status: "pending",
+        confirmedPasses: 0
+      }
+      
       addGuest(
-        data,
+        payload,
         () => openDialog('success', `Añadiste a ${data.name} ${data.lastName} a la lista`),
         () => openDialog('error', 'Se produjo un error al añadir al invitado a la lista. Inténtalo nuevamente.'),
         () => handleModals('close', 'addGuest')

@@ -32,7 +32,7 @@ export function useFilteredAndSortedGuests() {
 
     if (statusFilter !== "all") {
       list = list.filter(
-        g => g.confirmation === confirmationMap[statusFilter]
+        g => g.status === statusFilter
       );
     }
 
