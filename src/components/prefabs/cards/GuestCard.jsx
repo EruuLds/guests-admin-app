@@ -1,23 +1,18 @@
 import { useContext } from 'react'
 import { DataContext } from '../../../contexts/DataContext';
 import Button from '../../ui/Button';
-import { useShare } from '../../../hooks/useShare';
 import { useHandleModals } from '../../../hooks/useHandleModals';
+import { shareInvitationViaWhatsApp } from '../../../utils/shareInvitationViaWhatsapp';
+import { shareInvitation } from '../../../utils/shareInvitation';
 
 export default function GuestCard({id, guestName, guestLastName, passes, table, status, confirmedPasses}) {
     const { selectedCard, setSelectedCard, customInvitationURL} = useContext(DataContext);
     const handleModals = useHandleModals();
     const guestURL = customInvitationURL + '?id=' + id;
     const isOpen = selectedCard === id;
+    const share = shareInvitation(id, guestName);
+    const shareWA = shareInvitationViaWhatsApp(id, guestName);
 
-    const share = useShare(id);
-
-    function whatsappShare() {
-        window.open(
-            `https://wa.me/?text=${encodeURIComponent(guestURL)}`,
-            "_blank"
-        );
-    }
 
     return (
         <div id={id} className='relative bg-zinc-100 rounded-2xl overflow-hidden mb-2'>
@@ -59,7 +54,7 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                             </div>
                             <a className="truncate grow px-2 py-1" href={guestURL} target="_blank">{guestURL}</a>
                             <Button type={'icon'} size={'small'} icon={'share'} hFit={'container'} buttonColor={'dark-gray'} onClickFunction={share}/>
-                            <Button type={'icon'} size={'small'} icon={'whatsapp'} hFit={'container'} buttonColor={'whatsapp'} onClickFunction={whatsappShare}/>
+                            <Button type={'icon'} size={'small'} icon={'whatsapp'} hFit={'container'} buttonColor={'whatsapp'} onClickFunction={shareWA}/>
                         </div>
                         <div className='grid grid-cols-2 gap-3 col-span-5 lg:col-span-2'>
                             <Button type={'combined'} size={'small'} icon={'pencil'} buttonColor={'white'} roundness={'small'} onClickFunction={() => handleModals('open', 'editGuest')} >Editar</Button>
