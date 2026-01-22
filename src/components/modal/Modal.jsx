@@ -24,7 +24,7 @@ export default function Modal({ id, card, title, children, onClose}) {
         h-full 
         bg-black/20 
         transition-all 
-        duration-500 
+        duration-300 
         ${(!card && isMobile) && 'responsive-container'}
         ${show ? "opacity-100" : "opacity-0"}`}
       onClick={!loading ? onClose ? onClose : () => handleModals("close", id) : undefined }
@@ -38,7 +38,7 @@ export default function Modal({ id, card, title, children, onClose}) {
             shadow-xl 
             transition-all 
             standard-ease
-            duration-500 
+            duration-300 
             overflow-hidden
             sm:max-w-[1280px]
             sm:min-w-[30rem]

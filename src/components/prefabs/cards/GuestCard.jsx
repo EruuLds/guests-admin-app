@@ -38,7 +38,7 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                         </div>
                         <div className='col-span-1 flex justify-center items-middle'>
                             <Button type={'text'} wFit={'container'} icon={'gear'} buttonColor={'secondary'} roundness={'small'} onClickFunction={isOpen ? () => setSelectedCard(null) : () => setSelectedCard(id)}>
-                                <div className={`transition-all duration-500 ${isOpen ? 'rotate-180' : 'rotate-0'}`}>
+                                <div className={`transition-all duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}>
                                     <img className='min-w-[1.25rem]' src="/icons/chevron-down.svg" alt="Arrow Down Icon"/>
                                 </div>
                             </Button>

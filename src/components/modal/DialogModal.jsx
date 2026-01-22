@@ -39,7 +39,7 @@ export default function DialogModal({ id, type, message, onClickTarget}) {
 
   return ReactDOM.createPortal(
     <div className="fixed pointer-events-none inset-0 flex top-0 z-[1000]">
-      <div className={`responsive-container absolute w-full flex justify-center -translate-x-1/2 left-1/2 transition-all duration-500 ${visible ? "top-4 opacity-100" : "-top-20 opacity-0"}`}>
+      <div className={`responsive-container absolute w-full flex justify-center -translate-x-1/2 left-1/2 transition-all duration-300 ${visible ? "top-4 opacity-100" : "-top-20 opacity-0"}`}>
         <div
           className={`select-none pointer-events-auto flex items-center text-center p-4 bg-zinc-50 rounded-2xl shadow-xl`}
           onClick={handleClick}

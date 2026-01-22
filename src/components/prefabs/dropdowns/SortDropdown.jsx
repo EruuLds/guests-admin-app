@@ -21,9 +21,9 @@ export default function SortDropdown() {
                 roundness={"large"}
                 onClickFunction={() => setIsOpen(!isOpen)}
             />
-            <div className="absolute translate-y-full bottom-0">
+            <div className="absolute translate-y-full bottom-0 bg-zinc-100 rounded-2xl shadow-xl">
                 <Dropdown isOpen={isOpen}>
-                    <div className="bg-zinc-100 rounded-2xl shadow-lg p-2">
+                    <div className="p-2">
                         <div className="mb-2">
                             <p className="text-center">Ordenar por:</p>
                         </div>

@@ -20,7 +20,7 @@ export default function Dropdown({ isOpen, children }) {
   }, [isOpen, children, isMobile]);
 
   return (
-    <div className='overflow-y-hidden will-change-[height] will-change-[opacity] transition-all standard-ease duration-500' style={{height, opacity}}>
+    <div className='overflow-y-hidden will-change-[height] will-change-[opacity] transition-all standard-ease duration-300' style={{height, opacity}}>
       <div ref={contentRef} >
         {children}
       </div>
