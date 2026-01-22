@@ -9,8 +9,6 @@ export function ModalContextProvider(props) {
     const [openDialogs, setOpenDialogs] = useState([]);
     const [visibleDialogs, setVisibleDialogs] = useState([]);
 
-    const [openDropdowns, setOpenDropdowns] = useState(null);
-
     return (
         <ModalContext.Provider
             value={{
@@ -21,9 +19,7 @@ export function ModalContextProvider(props) {
                 openDialogs,
                 setOpenDialogs,
                 visibleDialogs,
-                setVisibleDialogs,
-                openDropdowns,
-                setOpenDropdowns
+                setVisibleDialogs
             }}
         >
             {props.children}

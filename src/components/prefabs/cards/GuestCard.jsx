@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { DataContext } from '../../../contexts/DataContext';
 import Button from '../../ui/Button';
+import Dropdown from "../../ui/Dropdown"
 import { useHandleModals } from '../../../hooks/useHandleModals';
 import { shareInvitationViaWhatsApp } from '../../../utils/shareInvitationViaWhatsapp';
 import { shareInvitation } from '../../../utils/shareInvitation';
@@ -12,7 +13,6 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
     const isOpen = selectedCard === id;
     const share = shareInvitation(id, guestName);
     const shareWA = shareInvitationViaWhatsApp(id, guestName);
-
 
     return (
         <div id={id} className='relative bg-zinc-100 rounded-2xl overflow-hidden mb-2'>
@@ -37,8 +37,8 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                             <p className='text-lg leading-5'>{table == undefined ? '-' : table}</p>
                         </div>
                         <div className='col-span-1 flex justify-center items-middle'>
-                            <Button type={'text'} wFit={'container'} icon={'gear'} buttonColor={'secondary'} roundness={'small'} onClickFunction={selectedCard === id ? () => setSelectedCard(null) : () => setSelectedCard(id)}>
-                                <div className={`transition-all duration-300 ${selectedCard === id ? 'rotate-180' : 'rotate-0'}`}>
+                            <Button type={'text'} wFit={'container'} icon={'gear'} buttonColor={'secondary'} roundness={'small'} onClickFunction={isOpen ? () => setSelectedCard(null) : () => setSelectedCard(id)}>
+                                <div className={`transition-all duration-500 ${isOpen ? 'rotate-180' : 'rotate-0'}`}>
                                     <img className='min-w-[1.25rem]' src="/icons/chevron-down.svg" alt="Arrow Down Icon"/>
                                 </div>
                             </Button>
@@ -46,8 +46,8 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                     </div>
                 </div>
                 
-                <div className={`transition-all standard-ease duration-500 overflow-hidden ${isOpen ? "max-h-26" : "max-h-0"}`}>
-                    <div className={`transition-opacity standard-ease duration-500 ${isOpen ? "opacity-100" : "opacity-0"} grid grid-cols-5 gap-3 mt-3`}>
+                <Dropdown isOpen={isOpen}>
+                    <div className={`grid grid-cols-5 gap-3 pt-3`}>
                         <div className="flex grow items-center bg-white rounded-lg text-sm col-span-5 lg:col-span-3 overflow-hidden">
                             <div className="flex-none flex items-center h-full bg-zinc-200 px-2 py-1 uppercase text-zinc-500">
                                 <p>Link</p>
@@ -61,7 +61,7 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                             <Button type={'combined'} size={'small'} icon={'trash3'} buttonColor={'white-danger'} textColor={'red'} roundness={'small'} onClickFunction={() => handleModals('open', 'confirmDeleteGuest')} >Eliminar</Button>
                         </div>
                     </div>
-                </div>
+                </Dropdown>
             </div>
 
             {status === 'declined' &&

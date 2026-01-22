@@ -45,8 +45,8 @@ export default function Modal({ id, card, title, children, onClose}) {
             mx-auto
             ${
               card
-                ? `inset-x-0 rounded-tl-4xl rounded-tr-4xl ${
-                    show ? "bottom-0" : "-bottom-full"
+                ? `inset-x-0 rounded-tl-4xl rounded-tr-4xl bottom-0 ${
+                    show ? "translate-y-0" : "translate-y-full"
                   }`
                 : `rounded-4xl -translate-y-1/2 top-1/2 ${
                     show ? "scale-none" : "scale-[0.9]"
