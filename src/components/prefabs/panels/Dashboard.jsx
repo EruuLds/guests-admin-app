@@ -1,10 +1,10 @@
 import StatsCard from "../cards/StatsCard"
 import StatsCardSkeleton from "../cards/StatsCardSkeleton";
+import Dropdown from "../../ui/Dropdown";
 import { DataContext } from "../../../contexts/DataContext";
 import { useGuestsStats } from "../../../hooks/useGuestStats"
 import { useContext, useEffect, useState } from "react";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
-import Dropdown from "../../../../../demo-invitation/src/components/prefabs/ui/Dropdown";
 
 export default function Dashboard() {
     const guestStats = useGuestsStats();
