@@ -89,7 +89,7 @@ input[type="number"] {
 }
 
 .responsive-container {
-  @apply @container px-[1rem] sm:px-[1.5rem] md:px-[1.5rem] lg:px-[3rem] sm:max-w-[1280px] w-full mx-auto;
+  @apply px-[1rem] sm:px-[1.5rem] md:px-[1.5rem] lg:px-[3rem] sm:max-w-[1280px] w-full mx-auto;
 }
 
 .text-light {

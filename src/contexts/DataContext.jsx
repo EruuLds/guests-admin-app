@@ -22,7 +22,7 @@ export function DataContextProvider({ children }) {
 
   // Leer invitados en tiempo real
   useEffect(() => {
-    const guestsRef = ref(database, "events/demo2026/guests");
+    const guestsRef = ref(database, "events/EV-DEMO-2026/guests");
     const unsubscribe = onValue(
       guestsRef,
       snapshot => {
