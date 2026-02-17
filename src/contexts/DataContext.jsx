@@ -6,6 +6,8 @@ export const DataContext = createContext();
 
 export function DataContextProvider({ children }) {
   const customInvitationURL = 'https://demo-invitation.netlify.app';
+  const eventId = 'EV-DEMO-2026';
+
   const [selectedCard, setSelectedCard] = useState(null);
   const [dirtyForms, setDirtyForms] = useState([])
 
@@ -22,7 +24,7 @@ export function DataContextProvider({ children }) {
 
   // Leer invitados en tiempo real
   useEffect(() => {
-    const guestsRef = ref(database, "events/EV-DEMO-2026/guests");
+    const guestsRef = ref(database, `events/EV-DEMO-2026/guests`);
     const unsubscribe = onValue(
       guestsRef,
       snapshot => {
@@ -48,7 +50,7 @@ export function DataContextProvider({ children }) {
   const addGuest = async (guestData, onSuccess, onError, onComplete) => {
     setLoading(true);
     try {
-      await push(ref(database, "events/demo2026/guests"), guestData);
+      await push(ref(database, `events/${eventId}/guests`), guestData);
       onSuccess?.();
     } catch (err) {
       setError(err.message);
@@ -62,7 +64,7 @@ export function DataContextProvider({ children }) {
   const updateGuest = async (id, updatedData, onSuccess, onError, onComplete) => {
     setLoading(true);
     try {
-      await update(ref(database, `events/demo2026/guests/${id}`), updatedData);
+      await update(ref(database, `events/${eventId}/guests/${id}`), updatedData);
       onSuccess?.();
     } catch (err) {
       setError(err.message);
@@ -76,7 +78,7 @@ export function DataContextProvider({ children }) {
   const deleteGuest = async (id, onSuccess, onError, onComplete) => {
     setLoading(true);
     try {
-      await remove(ref(database, `events/demo2026/guests/${id}`));
+      await remove(ref(database, `events/${eventId}/guests/${id}`));
       onSuccess?.();
     } catch (err) {
       setError(err.message);
