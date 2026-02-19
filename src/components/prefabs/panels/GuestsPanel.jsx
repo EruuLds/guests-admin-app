@@ -8,7 +8,7 @@ export default function GuestsPanel() {
             <div className="mb-4 md:mb-0 border-b border-zinc-100 md:border-none sticky top-0 z-[100]">
                 <Toolbar />
             </div>
-            <div className="flex-1 md:overflow-y-scroll rounded-2xl">
+            <div className="flex-1 md:overflow-y-auto custom-scrollbar rounded-2xl">
                 <GuestsList id="guestList" />
             </div>
         </div>
