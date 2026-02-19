@@ -5,6 +5,8 @@ import { DataContext } from "../../../contexts/DataContext";
 import { useGuestsStats } from "../../../hooks/useGuestStats"
 import { useContext, useEffect, useState } from "react";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function Dashboard() {
     const guestStats = useGuestsStats();
@@ -22,7 +24,7 @@ export default function Dashboard() {
             <div className="cursor-pointer md:cursor-auto flex justify-center items-center py-6 border-b border-zinc-100" onClick={() => setShowDashboard(!showDashboard)}>
                 <h3 className="text-center">Panel de Seguimiento</h3>
                 <div className={`ms-2 transition-all duration-300 block md:hidden ${showDashboard ? 'rotate-180' : 'rotate-0'}`}>
-                    <img className='min-w-[1.25rem]' src="/icons/chevron-down.svg" alt="Arrow Down Icon" />
+                    <FontAwesomeIcon icon={faChevronDown} />
                 </div>
             </div>
             <Dropdown isOpen={(showDashboard || !isMobile)}>

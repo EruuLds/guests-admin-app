@@ -7,6 +7,8 @@ import LoadingOverlay from "../../ui/LoadingOverlay";
 import { DataContext } from "../../../contexts/DataContext";
 import { useContext } from "react";
 import { useHandleModals } from "../../../hooks/useHandleModals";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 
 export default function EditGuestModal() {
     const { loading, dirtyForms } = useContext(DataContext);
@@ -31,10 +33,8 @@ export default function EditGuestModal() {
             </ModalBody>
             <ModalFooter alignment={"end"}>
                 <Button
-                    type={"text"}
-                    buttonColor={"secondary"}
-                    roundness={"large"}
-                    onClickFunction={
+                    variant={'secondary'}
+                    onClick={
                         dirtyForms.some(df => df === formID)
                             ? () => {handleModals("open", "confirmDiscardEditing")}
                             : () => handleModals("close", modalID)
@@ -43,12 +43,10 @@ export default function EditGuestModal() {
                     Descartar
                 </Button>
                 <Button
-                    type={"combined"}
-                    buttonColor={"primary"}
-                    icon={"floppy"}
-                    roundness={"large"}
+                    variant={'primary'}
                     targetForm={formID}
                 >
+                    <FontAwesomeIcon icon={faFloppyDisk} className="me-2" />
                     Guardar
                 </Button>
             </ModalFooter>

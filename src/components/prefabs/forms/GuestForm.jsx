@@ -5,6 +5,8 @@ import { useContext, useEffect, useRef } from 'react';
 import { useHandleModals } from '../../../hooks/useHandleModals';
 import { useHandleDirtyForms } from '../../../hooks/useHandleDirtyForms';
 import { useDialog } from '../../../hooks/useDialog';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function GuestForm({formType, formId}) {
   const { guests, selectedCard, addGuest, updateGuest } = useContext(DataContext);
@@ -73,8 +75,7 @@ export default function GuestForm({formType, formId}) {
     <form id={formId} method='post' onSubmit={handleSubmit(submitData)}>
       <section>
         <div className='grid grid-cols-6 gap-3'>
-         
-         <div className='col-span-6 sm:col-span-3 lg:col-span-2' >
+          <div className='col-span-6 sm:col-span-3 lg:col-span-2' >
             <div className='flex'>
               <label htmlFor="name">Nombre(s)</label>
               {errors.name?.type === 'required' && <span className='flex text-xs text-red ms-4 mb-2 items-center'>*Este campo es requerido</span>}
@@ -103,18 +104,26 @@ export default function GuestForm({formType, formId}) {
           <div className='col-span-3 lg:col-span-1' >
             <label className='text-center' htmlFor="passes">Pases</label>
             <div className='flex gap-2 items-center justify-center'>
-              <Button type={'icon'} size={'small'} icon={'dash-lg'} buttonColor={'primary-subtle'} roundness={'full'} onClickFunction={decrementPasses} />
+              <Button variant={'primarySubtle'} size={'sm'} shape={'circle'} onClick={decrementPasses}>
+                <FontAwesomeIcon icon={faMinus}/>
+              </Button>
               <input id='passes' className='grow w-full' type="number" value={passesValue} readOnly {...register("passes", {valueAsNumber: true})}/>
-              <Button type={'icon'} size={'small'} icon={'plus-lg'} buttonColor={'primary-subtle'} roundness={'full'} onClickFunction={incrementPasses} />
+              <Button variant={'primarySubtle'} size={'sm'} shape={'circle'} onClick={incrementPasses}>
+                <FontAwesomeIcon icon={faPlus}/>
+              </Button>
             </div>
           </div>
 
           <div className='col-span-3 lg:col-span-1 gap-2'>
             <label className='text-center' htmlFor="table">Mesa</label>
             <div className='flex gap-2 items-center justify-center'>
-              <Button type={'icon'} size={'small'} icon={'dash-lg'} buttonColor={'primary-subtle'} roundness={'full'} onClickFunction={decrementTable} />
+              <Button variant={'primarySubtle'} size={'sm'} shape={'circle'} onClick={decrementTable}>
+                <FontAwesomeIcon icon={faMinus}/>
+              </Button>
               <input id='table' className='grow w-full' type="number" value={tableValue} readOnly {...register("table", {valueAsNumber: true})}/>
-              <Button type={'icon'} size={'small'} icon={'plus-lg'} buttonColor={'primary-subtle'} roundness={'full'} onClickFunction={incrementTable} />
+              <Button variant={'primarySubtle'} size={'sm'} shape={'circle'} onClick={incrementTable}>
+                <FontAwesomeIcon icon={faPlus}/>
+              </Button>
             </div>
           </div>
         </div>

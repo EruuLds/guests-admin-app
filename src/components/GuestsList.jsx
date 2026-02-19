@@ -5,7 +5,7 @@ import { DataContext } from "../contexts/DataContext";
 import { useFilteredAndSortedGuests } from "../hooks/useFilteredAndSortedGuests";
 
 export default function GuestsList() {
-    const { selectedCard, statusFilter, guests, initialLoading, error, searchData } = useContext(DataContext);
+    const { statusFilter, guests, initialLoading, error, searchData } = useContext(DataContext);
     const filteredAndSortedGuests = useFilteredAndSortedGuests()
 
     return (

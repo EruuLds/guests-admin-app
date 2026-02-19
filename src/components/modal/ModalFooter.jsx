@@ -3,7 +3,7 @@ export default function ModalFooter({children, alignment}) {
         <div className={`
             w-full 
             flex 
-            p-8
+            p-6
             gap-4
             flex-wrap
             ${alignment === 'start' && 'justify-start'}

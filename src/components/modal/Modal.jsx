@@ -5,6 +5,8 @@ import { ModalContext } from "../../contexts/ModalContext";
 import { DataContext } from "../../contexts/DataContext";
 import { useHandleModals } from "../../hooks/useHandleModals";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function Modal({ id, card, title, children, onClose}) {
   const { visibleModals } = useContext(ModalContext);
@@ -55,23 +57,21 @@ export default function Modal({ id, card, title, children, onClose}) {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="relative">
-            <div className="w-full flex justify-between items-center p-8">
+            <div className="w-full flex justify-between items-center p-6">
               {card ? (
                 <h3 className="uppercase">{title}</h3>
               ) : (
                 <h4 className="uppercase">{title}</h4>
               )}
               <div className="aspect-square">
-                <Button
-                  type={"icon"}
-                  size={"small"}
-                  icon={"x-lg"}
-                  wFit={"full"}
-                  hFit={"full"}
-                  buttonColor={"secondary"}
-                  roundness={"full"}
-                  onClickFunction={!loading && onClose ? onClose : () => handleModals("close", id)}
-                ></Button>
+                <Button 
+                  variant={'secondary'}
+                  size={'sm'}
+                  shape={'circle'}
+                  onClick={!loading && onClose ? onClose : () => handleModals("close", id)}
+                >
+                  <FontAwesomeIcon icon={faXmark}/>
+                </Button>
               </div>
             </div>
             {children}

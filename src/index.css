@@ -5,8 +5,6 @@
   src: url(assets/fonts/StackSansText-VariableFont_wght.ttf);
 }
 
-@import "bootstrap-icons";
-
 @theme {
   --font-display: "stack", sans-serif;
   --standard-ease: cubic-bezier(0.5,0,0.5,1)
@@ -51,7 +49,7 @@ p {
 }
 
 input {
-  @apply w-full line-clamp-none leading-none bg-zinc-100 hover:bg-zinc-200 rounded-lg p-3 outline-offset-2 focus:outline-2 focus:outline-rose-400;
+  @apply w-full line-clamp-none leading-none bg-zinc-100 hover:bg-zinc-200 rounded-lg px-3 py-2 outline-offset-2 focus:outline-2 focus:outline-rose-400;
 }
 
 input.search-input {

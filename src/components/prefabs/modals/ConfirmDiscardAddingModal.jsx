@@ -3,6 +3,8 @@ import ModalBody from '../../modal/ModalBody'
 import ModalFooter from '../../modal/ModalFooter'
 import Button from '../../ui/Button'
 import { useHandleModals } from '../../../hooks/useHandleModals'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 export default function ConfirmDiscardAddingModal() {
     const handleModals = useHandleModals();
@@ -19,26 +21,19 @@ export default function ConfirmDiscardAddingModal() {
             </ModalBody>
             <ModalFooter alignment={"center"}>
                 <Button
-                    type={"text"}
-                    size={"large"}
-                    buttonColor={"secondary"}
-                    roundness={"large"}
-                    onClickFunction={() => handleModals("close", modalID)}
+                    variant={'primary'}
+                    onClick={() => handleModals("close", modalID)}
                 >
                     Volver
                 </Button>
                 <Button
-                    type={"combined"}
-                    size={"large"}
-                    buttonColor={"primary"}
-                    icon={"x-lg"}
-                    textColor={"white"}
-                    roundness={"large"}
-                    onClickFunction={() => {
+                    variant={'secondary'}
+                    onClick={() => {
                         handleModals("close", modalID);
                         handleModals("close", "addGuest");
                     }}
                 >
+                    <FontAwesomeIcon icon={faTrashCan} className='me-2' />
                     Descartar
                 </Button>
             </ModalFooter>

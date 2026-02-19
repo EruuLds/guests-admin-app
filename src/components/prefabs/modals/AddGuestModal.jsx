@@ -7,6 +7,8 @@ import LoadingOverlay from "../../ui/LoadingOverlay";
 import { DataContext } from "../../../contexts/DataContext";
 import { useContext } from "react";
 import { useHandleModals } from "../../../hooks/useHandleModals";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function AddGuestModal() {
     const { loading, dirtyForms } = useContext(DataContext);
@@ -32,10 +34,8 @@ export default function AddGuestModal() {
             </ModalBody>
             <ModalFooter alignment={"end"}>
                 <Button
-                    type={"text"}
-                    buttonColor={"secondary"}
-                    roundness={"large"}
-                    onClickFunction={
+                    variant={'secondary'}
+                    onClick={
                         dirtyForms.some(df => df === formID)
                             ? () => handleModals("open", "confirmDiscardAdding")
                             : () => handleModals("close", modalID)
@@ -44,12 +44,10 @@ export default function AddGuestModal() {
                     Descartar
                 </Button>
                 <Button
-                    type={"combined"}
-                    buttonColor={"primary"}
-                    icon={"plus-circle"}
-                    roundness={"large"}
+                    variant={'primary'}
                     targetForm={formID}
                 >
+                    <FontAwesomeIcon icon={faUserPlus} className="me-2" />
                     Añadir
                 </Button>
             </ModalFooter>

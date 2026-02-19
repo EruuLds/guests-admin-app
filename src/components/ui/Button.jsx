@@ -1,51 +1,44 @@
 import { useContext } from 'react';
 import { DataContext } from '../../contexts/DataContext';
 
-export default function Button({children, type, size, targetForm, roundness, wFit, hFit, buttonColor, onClickFunction, icon, listed}) {
-  const { loading, initialLoading } = useContext(DataContext);
+export default function Button({ children, variant, size, shape, targetForm, onClick, disabled, grow }) {
+  const { loading, initialLoading } = useContext(DataContext)
+  const isDisabled = disabled ?? (loading || initialLoading);
+  const variantMap = {
+    primary: "button-primary",
+    primarySubtle: "button-primary-subtle",
+    secondary: "button-secondary",
+    white: "button-white",
+    secondaryDanger: "button-secondary-danger",
+    whiteDanger: "button-white-danger",
+    whatsapp: "button-whatsapp"
+  };
+  const sizeMap = {
+    sm: "text-sm px-2 py-1 rounded-[0.5rem]",
+    md: "px-3 py-2 rounded-[0.75rem]",
+    lg: "text-lg px-3 py-2 rounded-[1rem]"
+  }
+  const shapeMap = {
+    circle: "aspect-square rounded-full",
+    square: "aspect-square"
+  }
 
   return (
-    <button 
+    <button
+      className={`uppercase cursor-pointer hover:backdrop-brightness-85
+        ${grow ? 'w-full' : 'w-fit'}
+        ${variant && (isDisabled ? 'button-disabled cursor-not-allowed' : variantMap[variant])}
+        ${shape && shapeMap[shape]}
+        ${size ? sizeMap[size] : sizeMap['md'] }`
+      }
       type={targetForm ? 'submit' : 'button'}
-      form={targetForm ? targetForm : undefined}
-      onClick={onClickFunction}
-      disabled={(loading || initialLoading )}
-      className={`
-        flex
-        items-center 
-        cursor-pointer 
-        p-3
-        transition-all 
-        duration-100
-        button-${buttonColor} 
-        ${listed ? 'justify-start' : 'justify-center'}
-        ${type === 'icon' && 'aspect-square'}
-        ${wFit === 'container' && 'w-full'} 
-        ${hFit === 'container' && 'h-full'} 
-        ${roundness === 'full' ? 'rounded-full' : roundness === 'small' ? 'rounded-lg' : roundness === 'large' ? 'rounded-2xl' : 'rounded-0'}`}
-      >
-        {(type === 'icon' || type === 'combined') &&
-          <i className={`
-            button-icon 
-            leading-3
-            ${type === 'combined' && 'me-2'} 
-            bi bi-${icon} 
-            ${size === 'small' ? 'text-sm' : 'text-base'}`}
-          ></i>
-        }
-        {(type === 'text' || type === 'combined') &&
-          <span className={`
-            select-none
-            text-nowrap
-            ${size === 'small' ? 'leading-3' : 'leading-5'}
-            ${!listed && 'uppercase'}
-            ${size === 'small' ? 'text-sm' : 'text-base'}`}
-          >
-            {children}
-          </span>
-        }
+      form={targetForm ? targetForm : null}
+      onClick={onClick}
+      disabled={isDisabled}
+    >
+      {children}
     </button>
-  )
+  );
 }
 
 /*

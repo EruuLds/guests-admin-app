@@ -6,6 +6,8 @@ import { DataContext } from "./contexts/DataContext";
 import { ModalContext } from "./contexts/ModalContext";
 import { useContext } from "react";
 import { useHandleModals } from "./hooks/useHandleModals";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "./components/prefabs/Navbar";
 import Dashboard from "./components/prefabs/panels/Dashboard";
 import GuestsPanel from "./components/prefabs/panels/GuestsPanel";
@@ -18,7 +20,7 @@ function App() {
   return (
     <>
       <div
-        className={`relative h-screen flex flex-col`}
+        className={`relative h-dvh flex flex-col`}
       >
         <Navbar />
         <main id="mainPanel" className="responsive-container pb-4 flex-1 md:overflow-y-hidden">
@@ -35,23 +37,17 @@ function App() {
         <ModalManager />
         <DialogManager />
 
-        <div className="sticky flex justify-end px-8 pb-8 pt-4 bottom-0 top-0 block sm:hidden pointer-events-none">
+        <div className="sticky flex justify-end px-6 pb-6 pt-2 bottom-0 top-0 block sm:hidden pointer-events-none">
           <div
-            className={`size-14 rounded-2xl shadow-xl transition-all duration-300 standard-ease pointer-events-auto ${
+            className={`size-14 rounded-full shadow-xl transition-all duration-300 standard-ease pointer-events-auto ${
               initialLoading || openModals.length > 0
                 ? "scale-[0.8] opacity-0"
                 : "scale-[1.0] opacity-100"
             }`}
           >
-            <Button
-              type={"icon"}
-              icon={"plus-circle"}
-              buttonColor={"primary"}
-              wFit={"container"}
-              hFit={"container"}
-              roundness={"large"}
-              onClickFunction={() => handleModals("open", "addGuest")}
-            />
+            <Button variant={"primary"} size={'lg'} shape={'circle'} grow onClick={() => handleModals("open", "addGuest")} >
+              <FontAwesomeIcon icon={faUserPlus}/>
+            </Button>
           </div>
         </div>
       </div>

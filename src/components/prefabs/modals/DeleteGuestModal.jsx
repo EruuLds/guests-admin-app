@@ -8,6 +8,8 @@ import { useContext, useRef } from "react";
 import { useHandleModals } from "../../../hooks/useHandleModals";
 import { useDialog } from "../../../hooks/useDialog";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function DeleteGuestModal() {
     const { guests, selectedCard, loading, error, deleteGuest } = useContext(DataContext);
@@ -25,7 +27,7 @@ export default function DeleteGuestModal() {
                         <p >Vas a eliminar a:</p>
                     </div>
                     <div className="mb-3">
-                        <p className="bg-gray-100 rounded-lg p-2 text-xl font-semibold">
+                        <p className="bg-gray-100 rounded-xl p-2 text-xl font-semibold">
                             {`${guestToDeleteData.current.name} ${guestToDeleteData.current.lastName}`}
                         </p>
                     </div>
@@ -37,23 +39,14 @@ export default function DeleteGuestModal() {
             </ModalBody>
             <ModalFooter alignment={"center"}>
                 <Button
-                    type={"text"}
-                    size={"large"}
-                    buttonColor={"secondary"}
-                    roundness={"large"}
-                    wFit={isMobile ? 'container' : 'content'}
-                    onClickFunction={() => handleModals("close", modalID)}
+                    variant={'secondary'}
+                    onClick={() => handleModals("close", modalID)}
                 >
                     Conservar Invitado
                 </Button>
                 <Button
-                    type={"combined"}
-                    size={"large"}
-                    buttonColor={"secondary-danger"}
-                    icon={"trash3"}
-                    roundness={"large"}
-                    wFit={isMobile ? 'container' : 'content'}
-                    onClickFunction={() => {
+                    variant={'secondaryDanger'}
+                    onClick={() => {
                         deleteGuest(
                             guestToDeleteData.current.id,
                             () => openDialog('success', `Eliminaste a ${guestToDeleteData.current.name.toUpperCase()} ${guestToDeleteData.current.lastName.toUpperCase()} de la lista`),
@@ -62,6 +55,7 @@ export default function DeleteGuestModal() {
                         );
                     }}
                 >
+                    <FontAwesomeIcon icon={faUserXmark} className="me-2"/>
                     Eliminar
                 </Button>
                 

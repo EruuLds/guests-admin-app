@@ -5,6 +5,9 @@ import Dropdown from "../../ui/Dropdown"
 import { useHandleModals } from '../../../hooks/useHandleModals';
 import { shareInvitationViaWhatsApp } from '../../../utils/shareInvitationViaWhatsapp';
 import { shareInvitation } from '../../../utils/shareInvitation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faPenToSquare, faShare, faUserXmark } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 export default function GuestCard({id, guestName, guestLastName, passes, table, status, confirmedPasses}) {
     const { selectedCard, setSelectedCard, customInvitationURL} = useContext(DataContext);
@@ -16,9 +19,9 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
 
     return (
         <div id={id} className='relative bg-zinc-100 rounded-2xl overflow-hidden mb-2'>
-            <div className='p-3 text-start'>
-                <div className='grid grid-cols-5 gap-3'>
-                    <div className='col-span-5 sm:col-span-3 bg-zinc-200 p-2 rounded-lg relative overflow-hidden'>
+            <div className='p-2 text-start'>
+                <div className='grid grid-cols-5 gap-2'>
+                    <div className='col-span-5 sm:col-span-3 bg-zinc-200 py-1 px-2 rounded-lg relative overflow-hidden'>
                         <p className='uppercase text-xs font-medium leading-4 text-zinc-500 select-none'>Invitado</p>
                         <p className='text-lg leading-5 truncate'>{guestName + ' ' + guestLastName}</p>
                         { status !== "pending" && 
@@ -27,19 +30,19 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                             </div>
                         }
                     </div>
-                    <div className='col-span-5 sm:col-span-2 grid grid-cols-5 gap-3'>
-                        <div className='bg-zinc-200 p-2 rounded-lg col-span-2'>
+                    <div className='col-span-5 sm:col-span-2 grid grid-cols-5 gap-2'>
+                        <div className='bg-zinc-200 py-1 px-2 rounded-lg col-span-2'>
                             <p className='uppercase text-xs font-medium leading-4 text-zinc-500 select-none'>{status === 'confirmed' ? 'Asisten' : 'Pases'}</p>
                             <p className='text-lg leading-5'>{status === 'confirmed' ? (confirmedPasses + '/' + passes) : passes}</p>
                         </div>
-                        <div className='bg-zinc-200 p-2 rounded-lg col-span-2'>
+                        <div className='bg-zinc-200 py-1 px-2 rounded-lg col-span-2'>
                             <p className='uppercase text-xs font-medium leading-4 text-zinc-500 select-none'>Mesa</p>
                             <p className='text-lg leading-5'>{table == undefined ? '-' : table}</p>
                         </div>
                         <div className='col-span-1 flex justify-center items-middle'>
-                            <Button type={'text'} wFit={'container'} icon={'gear'} buttonColor={'secondary'} roundness={'small'} onClickFunction={isOpen ? () => setSelectedCard(null) : () => setSelectedCard(id)}>
+                            <Button variant={'secondary'} size={'sm'} grow onClick={isOpen ? () => setSelectedCard(null) : () => setSelectedCard(id)}>
                                 <div className={`transition-all duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}>
-                                    <img className='min-w-[1.25rem]' src="/icons/chevron-down.svg" alt="Arrow Down Icon"/>
+                                    <FontAwesomeIcon icon={faChevronDown} size='lg' />
                                 </div>
                             </Button>
                         </div>
@@ -47,18 +50,31 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                 </div>
                 
                 <Dropdown isOpen={isOpen}>
-                    <div className={`grid grid-cols-5 gap-3 pt-3`}>
-                        <div className="flex grow items-center bg-white rounded-lg text-sm col-span-5 lg:col-span-3 overflow-hidden">
-                            <div className="flex-none flex items-center h-full bg-zinc-200 px-2 py-1 uppercase text-zinc-500">
-                                <p>Link</p>
+                    <div className={`grid grid-cols-5 gap-2 pt-2`}>
+                        <div className="flex items-center col-span-5 lg:col-span-3 gap-2">
+                            <div className='flex flex-1 items-center bg-white h-full rounded-lg overflow-hidden text-sm'>
+                                <span className="flex items-center h-full bg-zinc-200 px-2 py-1 uppercase text-zinc-500">
+                                    <p>Link</p>
+                                </span>
+                                <a className="truncate px-2 py-1 text-sm" href={guestURL} target="_blank">{guestURL}</a>
                             </div>
-                            <a className="truncate grow px-2 py-1" href={guestURL} target="_blank">{guestURL}</a>
-                            <Button type={'icon'} size={'small'} icon={'share'} hFit={'container'} buttonColor={'dark-gray'} onClickFunction={share}/>
-                            <Button type={'icon'} size={'small'} icon={'whatsapp'} hFit={'container'} buttonColor={'whatsapp'} onClickFunction={shareWA}/>
+
+                            <Button variant={'white'} size={'sm'} shape={'square'} onClick={share}>
+                                <FontAwesomeIcon icon={faShare} />
+                            </Button>
+                            <Button variant={'whatsapp'} size={'sm'} shape={'square'} onClick={shareWA}>
+                                <FontAwesomeIcon icon={faWhatsapp} />
+                            </Button>
                         </div>
-                        <div className='grid grid-cols-2 gap-3 col-span-5 lg:col-span-2'>
-                            <Button type={'combined'} size={'small'} icon={'pencil'} buttonColor={'white'} roundness={'small'} onClickFunction={() => handleModals('open', 'editGuest')} >Editar</Button>
-                            <Button type={'combined'} size={'small'} icon={'trash3'} buttonColor={'white-danger'} textColor={'red'} roundness={'small'} onClickFunction={() => handleModals('open', 'confirmDeleteGuest')} >Eliminar</Button>
+                        <div className='grid grid-cols-2 gap-2 col-span-5 lg:col-span-2'>
+                            <Button variant={'white'} size={'sm'} grow onClick={() => handleModals('open', 'editGuest')} >
+                                <FontAwesomeIcon icon={faPenToSquare} className='me-2' />
+                                Editar
+                            </Button>
+                            <Button variant={'whiteDanger'} size={'sm'} grow  onClick={() => handleModals('open', 'confirmDeleteGuest')} >
+                                <FontAwesomeIcon icon={faUserXmark} className='me-2' />
+                                Eliminar
+                            </Button>
                         </div>
                     </div>
                 </Dropdown>

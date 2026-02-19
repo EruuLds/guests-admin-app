@@ -3,6 +3,8 @@ import { useContext, useRef, useState } from "react";
 import { DataContext } from "../../../contexts/DataContext";
 import { useClickOutside } from "../../../hooks/useClickOutside";
 import Dropdown from "../../ui/Dropdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDownWideShort, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function SortDropdown() {
     const [ isOpen, setIsOpen ] = useState(false);
@@ -13,79 +15,70 @@ export default function SortDropdown() {
 
     return (
         <div className="relative" ref={dropdownBox}>
-            <Button
-                type={"icon"}
-                icon={"sort-down"}
-                hFit={'container'}
-                buttonColor={"secondary"}
-                roundness={"large"}
-                onClickFunction={() => setIsOpen(!isOpen)}
-            />
+            <Button variant={'secondary'} size={'lg'} shape={'square'} onClick={() => setIsOpen(!isOpen)}>
+                <FontAwesomeIcon icon={faArrowDownWideShort}/>
+            </Button>
             <div className="absolute translate-y-full bottom-0 bg-zinc-100 rounded-2xl shadow-xl">
                 <Dropdown isOpen={isOpen}>
                     <div className="p-2">
                         <div className="mb-2">
                             <p className="text-center">Ordenar por:</p>
                         </div>
-                        <div className="overflow-hidden rounded-lg">
+                        <div className="overflow-hidden rounded-lg grid gap-2">
                             <Button
-                                type={"text"}
-                                wFit={"container"}
-                                buttonColor={"white"}
-                                listed
-                                onClickFunction={() => {
+                                variant={'white'} 
+                                size={'sm'} 
+                                grow 
+                                onClick={() => {
                                     setSortBy("name-asc");
                                     setIsOpen(false);
                                 }}
                             >
-                                <div className="flex">
+                                <div className="flex items-center">
                                     <p>Nombre (ascendente)</p>
-                                    {sortBy === 'name-asc' && <i className="bi bi-check-circle-fill text-rose ms-2"></i>}
+                                    {sortBy === 'name-asc' && <FontAwesomeIcon icon={faCheckCircle} className="ms-2 text-rose"/>}
                                 </div>
                             </Button>
                             <Button
-                                type={"text"}
-                                wFit={"container"}
-                                buttonColor={"white"}
-                                listed
-                                onClickFunction={() => {
+                                variant={'white'} 
+                                size={'sm'} 
+                                grow 
+                                onClick={() => {
                                     setSortBy("name-desc");
                                     setIsOpen(false);
                                 }}
                             >
-                                <div className="flex">
+                                <div className="flex items-center">
                                     <p>Nombre (descendente)</p>
-                                    {sortBy === 'name-desc' && <i className="bi bi-check-circle-fill text-rose ms-2"></i>}
+                                    {sortBy === 'name-desc' && <FontAwesomeIcon icon={faCheckCircle} className="ms-2 text-rose"/>}
                                 </div>
                             </Button>
                             <Button
-                                type={"text"}
-                                wFit={"container"}
-                                buttonColor={"white"}
-                                listed
-                                onClickFunction={() => {
+                                variant={'white'} 
+                                size={'sm'} 
+                                grow 
+                                onClick={() => {
                                     setSortBy("table-asc");
                                     setIsOpen(false);
                                 }}
                             >
-                                <div className="flex">
+                                <div className="flex items-center">
                                     <p>Mesa (ascendente)</p>
-                                    {sortBy === 'table-asc' && <i className="bi bi-check-circle-fill text-rose ms-2"></i>}
+                                    {sortBy === 'table-asc' && <FontAwesomeIcon icon={faCheckCircle} className="ms-2 text-rose"/>}
                                 </div>
                             </Button>
                             <Button
-                                type={"text"}
-                                wFit={"container"}
-                                buttonColor={"white"}
-                                listed
-                                onClickFunction={() => {
+                                variant={'white'} 
+                                size={'sm'} 
+                                grow 
+                                onClick={() => {
                                     setSortBy("table-desc");
                                     setIsOpen(false);
                                 }}
                             >
-                                <div className="flex">
+                                <div className="flex items-center">
                                     <p>Mesa (descendente)</p>
-                                    {sortBy === 'table-desc' && <i className="bi bi-check-circle-fill text-rose ms-2"></i>}
+                                    {sortBy === 'table-desc' && <FontAwesomeIcon icon={faCheckCircle} className="ms-2 text-rose"/>}
                                 </div>
                             </Button>
                         </div>
