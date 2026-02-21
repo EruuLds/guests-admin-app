@@ -4,7 +4,7 @@ import DialogManager from "./components/component-managers/DialogManager";
 import Button from "./components/ui/Button";
 import { DataContext } from "./contexts/DataContext";
 import { ModalContext } from "./contexts/ModalContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useHandleModals } from "./hooks/useHandleModals";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
@@ -12,10 +12,14 @@ import Navbar from "./components/prefabs/Navbar";
 import Dashboard from "./components/prefabs/panels/Dashboard";
 import GuestsPanel from "./components/prefabs/panels/GuestsPanel";
 
+import { useDialog } from "./hooks/useDialog";
+
 function App() {
   const { openModals } = useContext(ModalContext);
   const { initialLoading } = useContext(DataContext);
   const handleModals = useHandleModals();
+
+  const { openDialog } = useDialog();
 
   return (
     <>
@@ -26,7 +30,7 @@ function App() {
         <main id="mainPanel" className="responsive-container pb-4 flex-1 md:overflow-y-hidden">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 md:h-full">
             <div className="h-full md:overflow-y-auto">
-              <Dashboard></Dashboard>
+              <Dashboard/>
             </div>
             <div className="md:col-span-2 h-full md:overflow-y-hidden">
               <GuestsPanel></GuestsPanel>

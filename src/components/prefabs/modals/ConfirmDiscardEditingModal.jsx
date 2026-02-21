@@ -3,13 +3,11 @@ import ModalBody from "../../modal/ModalBody";
 import ModalFooter from "../../modal/ModalFooter";
 import Button from "../../ui/Button";
 import { useHandleModals } from "../../../hooks/useHandleModals";
-import { useDialog } from "../../../hooks/useDialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 export default function ConfirmDiscardEditingModal() {
     const handleModals = useHandleModals();
-    const { openDialog } = useDialog();
     const modalID = 'confirmDiscardEditing';
 
     return (

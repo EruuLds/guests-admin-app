@@ -1,7 +1,9 @@
 import ReactDOM from "react-dom";
 import Button from "../ui/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useDialog } from "../../hooks/useDialog";
+import { faCircleCheck, faCircleInfo, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 export default function DialogModal({ id, type, message, onClickTarget}) {
   const [visible, setVisible] = useState(false);
@@ -22,7 +24,7 @@ export default function DialogModal({ id, type, message, onClickTarget}) {
 
   const handleClick = () => {
     if (!onClickTarget) return;
-    const el = document.getElementById(onClickTarget);
+    const el = document.getElementById(targetElement);
     el?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -31,10 +33,19 @@ export default function DialogModal({ id, type, message, onClickTarget}) {
     setTimeout(() => closeDialog(id), 500);
   };
 
-  const icon = {
-    success: 'text-green bi bi-check-lg',
-    error: 'text-red bi bi-exclamation-triangle',
-    info: 'text-blue bi bi-info-circle'
+  const iconMap = {
+    success: {
+      style: 'text-green',
+      icon: faCircleCheck
+    },
+    error: {
+      style: 'text-red',
+      icon: faExclamationTriangle
+    },
+    info: {
+      style: 'text-blue',
+      icon: faCircleInfo
+    }
   }
 
   return ReactDOM.createPortal(
@@ -44,7 +55,7 @@ export default function DialogModal({ id, type, message, onClickTarget}) {
           className={`select-none pointer-events-auto flex items-center text-center p-4 bg-zinc-50 rounded-2xl shadow-xl`}
           onClick={handleClick}
         >
-          {type && <i className={`text-2xl pe-4 ${icon[type]}`}></i>}
+          {type && <FontAwesomeIcon icon={iconMap[type].icon} className={`${iconMap[type].style} me-2`} size="lg" />}
           <p className="grow">{message}</p>
           <div className="aspect-square ms-4" onClick={(e) => e.stopPropagation()}>
             <Button
