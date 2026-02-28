@@ -3,7 +3,7 @@ import Button from "../ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useDialog } from "../../hooks/useDialog";
-import { faCircleCheck, faCircleInfo, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck, faCircleInfo, faExclamationTriangle, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function DialogModal({ id, type, message, onClickTarget}) {
   const [visible, setVisible] = useState(false);
@@ -59,13 +59,13 @@ export default function DialogModal({ id, type, message, onClickTarget}) {
           <p className="grow">{message}</p>
           <div className="aspect-square ms-4" onClick={(e) => e.stopPropagation()}>
             <Button
-              type={"icon"}
-              size={"small"}
-              icon={"x-lg"}
-              buttonColor={"secondary"}
-              roundness={"full"}
-              onClickFunction={handleClose}
-            ></Button>
+              variant={'secondary'}
+              size={'sm'}
+              shape={'circle'}
+              onClick={handleClose}
+            >
+              <FontAwesomeIcon icon={faXmark}/>
+            </Button>
           </div>
         </div>
       </div>

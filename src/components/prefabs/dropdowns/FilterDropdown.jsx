@@ -49,7 +49,7 @@ export default function FilterDropdown() {
                                 }}
                             >
                                 <div className="flex items-center">
-                                    <p>Aceptadas</p>
+                                    <p>Confirmadas</p>
                                     {statusFilter === 'confirmed' && <FontAwesomeIcon icon={faCheckCircle} className="ms-2 text-rose"/>}
                                 </div>
                             </Button>

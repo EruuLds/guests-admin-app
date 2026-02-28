@@ -6,7 +6,7 @@ import { useHandleModals } from '../../../hooks/useHandleModals';
 import { useHandleDirtyForms } from '../../../hooks/useHandleDirtyForms';
 import { useDialog } from '../../../hooks/useDialog';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function GuestForm({formType, formId}) {
   const { guests, selectedCard, addGuest, updateGuest } = useContext(DataContext);
@@ -61,9 +61,17 @@ export default function GuestForm({formType, formId}) {
         () => handleModals('close', 'addGuest')
       );
     } else if (formType === 'edit') {
+      const payload = {
+        name: data.name,
+        lastName: data.lastName,
+        passes: data.passes,
+        confirmedPasses: data.passes < data.confirmedPasses ? data.passes : data.confirmedPasses,
+        table: data.table
+      }
+
       updateGuest(
         guestToEdit.current, 
-        data,
+        payload,
         () => openDialog('success', `Guardaste los cambios para ${data.name} ${data.lastName}`),
         () => openDialog('error', 'Se produjo un error al guardar los cambios. Inténtalo nuevamente.'),
         () => handleModals('close', 'editGuest')
@@ -118,11 +126,11 @@ export default function GuestForm({formType, formId}) {
             <label className='text-center' htmlFor="table">Mesa</label>
             <div className='flex gap-2 items-center justify-center'>
               <Button variant={'primarySubtle'} size={'sm'} shape={'circle'} onClick={decrementTable}>
-                <FontAwesomeIcon icon={faMinus}/>
+                <FontAwesomeIcon icon={faChevronLeft}/>
               </Button>
               <input id='table' className='grow w-full' type="number" value={tableValue} readOnly {...register("table", {valueAsNumber: true})}/>
               <Button variant={'primarySubtle'} size={'sm'} shape={'circle'} onClick={incrementTable}>
-                <FontAwesomeIcon icon={faPlus}/>
+                <FontAwesomeIcon icon={faChevronRight}/>
               </Button>
             </div>
           </div>

@@ -4,7 +4,7 @@ import DialogManager from "./components/component-managers/DialogManager";
 import Button from "./components/ui/Button";
 import { DataContext } from "./contexts/DataContext";
 import { ModalContext } from "./contexts/ModalContext";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useHandleModals } from "./hooks/useHandleModals";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
@@ -12,14 +12,10 @@ import Navbar from "./components/prefabs/Navbar";
 import Dashboard from "./components/prefabs/panels/Dashboard";
 import GuestsPanel from "./components/prefabs/panels/GuestsPanel";
 
-import { useDialog } from "./hooks/useDialog";
-
 function App() {
   const { openModals } = useContext(ModalContext);
   const { initialLoading } = useContext(DataContext);
   const handleModals = useHandleModals();
-
-  const { openDialog } = useDialog();
 
   return (
     <>

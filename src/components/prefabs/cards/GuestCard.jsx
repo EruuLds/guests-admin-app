@@ -17,6 +17,25 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
     const share = shareInvitation(id, guestName);
     const shareWA = shareInvitationViaWhatsApp(id, guestName);
 
+    const statusBadgeMap = {
+        pending: {
+            label: 'Pendiente',
+            style: 'bg-zinc-100'
+        },
+        confirmed: {
+            label: 'Confirmada',
+            style: 'bg-green-300'
+        },
+        declined: {
+            label: 'Rechazada',
+            style: 'bg-zinc-300'
+        },
+        used: {
+            label: 'Usada',
+            style: 'bg-zinc-300'
+        },
+    }
+
     return (
         <div id={id} className='relative bg-zinc-100 rounded-2xl overflow-hidden mb-2'>
             <div className='p-2 text-start'>
@@ -24,11 +43,9 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                     <div className='col-span-5 sm:col-span-3 bg-zinc-200 py-1 px-2 rounded-lg relative overflow-hidden'>
                         <p className='uppercase text-xs font-medium leading-4 text-zinc-500 select-none'>Invitado</p>
                         <p className='text-lg leading-5 truncate'>{guestName + ' ' + guestLastName}</p>
-                        { status !== "pending" && 
-                            <div className={`absolute flex justify-center items-center w-30 h-4 top-0 right-0 rounded-bl-lg ${status === 'confirmed' ? 'bg-green-300' : 'bg-gray-300'}`}>
-                                <p className='text-xs uppercase mx-1 text-center select-none'>{status === 'confirmed' ? 'Asistirá' : 'No Asistirá'}</p>
-                            </div>
-                        }
+                        <div className={`status-badge ${statusBadgeMap[status].style}`}>
+                            <p>{statusBadgeMap[status].label}</p>
+                        </div>
                     </div>
                     <div className='col-span-5 sm:col-span-2 grid grid-cols-5 gap-2'>
                         <div className='bg-zinc-200 py-1 px-2 rounded-lg col-span-2'>
@@ -80,7 +97,7 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
                 </Dropdown>
             </div>
 
-            {status === 'declined' &&
+            {status === 'used' &&
                 <div className='absolute inset-0 bg-stripes opacity-50'></div>
             }
         </div>
