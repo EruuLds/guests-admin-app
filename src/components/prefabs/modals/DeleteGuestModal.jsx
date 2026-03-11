@@ -3,21 +3,35 @@ import ModalBody from "../../modal/ModalBody";
 import ModalFooter from "../../modal/ModalFooter";
 import Button from "../../ui/Button";
 import LoadingOverlay from "../../ui/LoadingOverlay";
-import { DataContext } from "../../../contexts/DataContext";
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { useHandleModals } from "../../../hooks/useHandleModals";
 import { useDialog } from "../../../hooks/useDialog";
-import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserXmark } from "@fortawesome/free-solid-svg-icons";
+import { useDataContext } from "../../../hooks/contexts/useDataContext";
+import { useGuests } from "../../../hooks/database/useGuests";
+//import { useMediaQuery } from "../../../hooks/useMediaQuery";
 
 export default function DeleteGuestModal() {
-    const { guests, selectedCard, loading, error, deleteGuest } = useContext(DataContext);
-    const guestToDeleteData = useRef(guests.find((g) => g.id === selectedCard));
+    const { guests, selectedCard, loading } = useDataContext();
+    const { deleteGuest } = useGuests();
+    const guest = useRef(guests.find((g) => g.id === selectedCard));
     const handleModals = useHandleModals();
     const { openDialog } = useDialog();
     const modalID = 'confirmDeleteGuest';
-    const isMobile = useMediaQuery("(max-width: 448px)");
+    //const isMobile = useMediaQuery("(max-width: 448px)");
+
+    const handleGuestDelete = async () => {
+        try {
+            await deleteGuest(guest.current.id);
+            openDialog('success', `Eliminaste a ${guest.current.name.toUpperCase()} ${guest.current.lastName.toUpperCase()} de la lista`);
+        } catch(err) {
+            openDialog('error', 'Se produjo un error al tratar de eliminar al invitado. Inténtalo nuevamente.');
+            throw err;
+        } finally {
+            handleModals("close", modalID);
+        }
+    }
             
     return (
         <Modal id={modalID} title={"Eliminar Invitado"}>
@@ -28,7 +42,7 @@ export default function DeleteGuestModal() {
                     </div>
                     <div className="mb-3">
                         <p className="bg-gray-100 rounded-xl p-2 text-xl font-semibold">
-                            {`${guestToDeleteData.current.name} ${guestToDeleteData.current.lastName}`}
+                            {`${guest.current.name} ${guest.current.lastName}`}
                         </p>
                     </div>
                     <div>
@@ -46,14 +60,7 @@ export default function DeleteGuestModal() {
                 </Button>
                 <Button
                     variant={'secondaryDanger'}
-                    onClick={() => {
-                        deleteGuest(
-                            guestToDeleteData.current.id,
-                            () => openDialog('success', `Eliminaste a ${guestToDeleteData.current.name.toUpperCase()} ${guestToDeleteData.current.lastName.toUpperCase()} de la lista`),
-                            () => openDialog('error', 'Se produjo un error al guardar los cambios. Inténtalo nuevamente.'),
-                            () => handleModals("close", modalID)
-                        );
-                    }}
+                    onClick={handleGuestDelete}
                 >
                     <FontAwesomeIcon icon={faUserXmark} className="me-2"/>
                     Eliminar

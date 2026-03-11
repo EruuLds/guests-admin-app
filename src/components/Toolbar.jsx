@@ -26,7 +26,7 @@ export default function Toolbar() {
                     </div>
                 </div>
                 <div className="hidden sm:block">
-                    <Button variant={'primary'} size={'lg'} onClick={() => handleModals("open", "addGuest")}>
+                    <Button variant={'primary'} size={'lg'} onClick={() => handleModals("open", "createGuest")}>
                         <FontAwesomeIcon icon={faUserPlus} className="me-2" />
                         Nueva Invitación
                     </Button>

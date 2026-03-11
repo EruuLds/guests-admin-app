@@ -9,6 +9,8 @@
   --font-display: "stack", sans-serif;
   --standard-ease: cubic-bezier(0.5,0,0.5,1)
   --text-dark: var(--text-zinc-950);
+  --color-primary: var(--color-rose-400);
+  --color-secondary: var(--color-zinc-100);
 }
 
 :root {
@@ -21,6 +23,10 @@
 #root {
   min-height: 100dvh;
   width: 100%;
+}
+
+.text-button {
+  @apply cursor-pointer text-rose-400 underline;
 }
 
 h1 {
@@ -49,7 +55,7 @@ p {
 }
 
 input {
-  @apply w-full line-clamp-none leading-none bg-zinc-100 hover:bg-zinc-200 rounded-lg px-3 py-2 outline-offset-2 focus:outline-2 focus:outline-rose-400;
+  @apply w-full line-clamp-none leading-none bg-zinc-100 hover:brightness-97 rounded-lg px-3 py-2 outline-offset-2 focus:outline-2 focus:outline-rose-400;
 }
 
 input.search-input {
@@ -76,20 +82,30 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-
 .standard-ease {
   transition-timing-function: var(--standard-ease);
 }
-
 .bg-stripes {
   background-image: url('/public/img/stripes.svg');
   background-repeat: repeat;
 }
+.panel-shadow {
+  -webkit-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.15); 
+  box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.15);
+}
 
+.panel-a {
+  @apply p-2 bg-zinc-100 rounded-2xl overflow-hidden;
+}
+.panel-b {
+  @apply rounded-lg bg-zinc-200 p-2 overflow-hidden;
+}
+.label-uc {
+  @apply uppercase text-xs font-medium leading-4 text-zinc-500 select-none;
+}
 .status-badge {
   @apply absolute flex justify-center items-center w-30 h-4 top-0 right-0 rounded-bl-lg text-xs uppercase px-1 text-center select-none;
 }
-
 .responsive-container {
   @apply px-[1rem] sm:px-[1.5rem] md:px-[1.5rem] lg:px-[3rem] sm:max-w-[1280px] w-full mx-auto;
 }
@@ -110,54 +126,36 @@ input[type="number"] {
   @apply text-sky-600;
 }
 .text-green {
-  @apply text-emerald-600;
+  @apply text-green-400;
 }
 
 
 .button-primary {
-  @apply text-zinc-50 bg-rose-400 hover:bg-rose-500 active:scale-[0.98];
+  @apply text-zinc-50 bg-rose-400;
 }
 .button-primary-subtle {
-  @apply text-zinc-50 bg-rose-300 hover:bg-rose-400 active:scale-[0.98];
+  @apply text-zinc-50 bg-rose-300;
 }
 .button-secondary {
-  @apply bg-zinc-100 hover:bg-zinc-200 active:scale-[0.98];
+  @apply bg-zinc-100;
 }
 .button-secondary-danger {
-  @apply text-red-700 bg-zinc-100 hover:bg-zinc-200 active:scale-[0.98];
+  @apply text-red-700 bg-zinc-100;
 }
-
-
-
 .button-white {
-  @apply text-zinc-950 bg-white hover:bg-zinc-50 active:scale-[0.98];
+  @apply text-zinc-950 bg-white;
 }
-
 .button-white-danger {
-  @apply text-red-700 bg-white hover:bg-gray-50 active:scale-[0.98];
+  @apply text-red-700 bg-white;
 }
-
 .button-whatsapp {
-  @apply text-gray-50 bg-emerald-400 hover:bg-emerald-500 active:scale-[0.98];
+  @apply text-gray-50 bg-emerald-400;
 }
-
 .button-dark-gray {
-  @apply bg-gray-200 hover:bg-gray-300 active:scale-[0.98];
+  @apply bg-gray-200;
 }
-
 .button-dark {
-  @apply text-zinc-50 bg-zinc-600 hover:bg-zinc-700 active:scale-[0.98];
-}
-
-.button-yellow {
-  @apply bg-yellow-200 hover:bg-yellow-300 active:scale-[0.98];
-}
-
-.button-blue {
-  @apply text-gray-50 bg-sky-500 hover:bg-sky-600 active:scale-[0.98];
-}
-.button-green {
-  @apply bg-emerald-200 hover:bg-emerald-300 active:scale-[0.98];
+  @apply text-zinc-50 bg-zinc-600;
 }
 
 .custom-scrollbar::-webkit-scrollbar {

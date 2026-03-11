@@ -24,12 +24,6 @@ export function useFilteredAndSortedGuests() {
       });
     }
 
-    const confirmationMap = {
-      confirmed: true,
-      unconfirmed: undefined,
-      declined: false,
-    };
-
     if (statusFilter !== "all") {
       list = list.filter(
         g => g.status === statusFilter

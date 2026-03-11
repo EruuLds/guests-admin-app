@@ -3,10 +3,13 @@ import GuestCardSkeleton from "./prefabs/cards/GuestCardSkeleton";
 import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
 import { useFilteredAndSortedGuests } from "../hooks/useFilteredAndSortedGuests";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function GuestsList() {
     const { statusFilter, guests, initialLoading, error, searchData } = useContext(DataContext);
-    const filteredAndSortedGuests = useFilteredAndSortedGuests()
+    const filteredAndSortedGuests = useFilteredAndSortedGuests();
+    const skeletons = Array.from({ length: 10 }, (_, i) => (<GuestCardSkeleton key={i} />));
 
     return (
         <>
@@ -21,8 +24,8 @@ export default function GuestsList() {
                 </div>
             }
             {initialLoading &&
-                Array.from({ length: 10 }).map((_, i) => <GuestCardSkeleton key={i} />
-            )}
+                <div className="mask-b-from-10% h-full overflow-y-hidden">{skeletons}</div>
+            }
             {!initialLoading && !error && guests.length === 0 && (
                 <div className="flex items-center flex-col text-center pt-10 select-none">
                     <h3 className="text-2xl mb-3 text-light-gray">
@@ -30,10 +33,8 @@ export default function GuestsList() {
                     </h3>
                     <p className="mb-8 text-light-gray">
                         Empieza con "
-                        <span className="uppercase">
-                            <i className="bi bi-plus-circle"></i> Añadir Invitado
-                        </span>
-                        " para gestionar su asistencia.
+                        <FontAwesomeIcon icon={faUserPlus} className="me-2" />
+                        NUEVA INVITACIÓN" para gestionar su asistencia.
                     </p>
                 </div>
             )}

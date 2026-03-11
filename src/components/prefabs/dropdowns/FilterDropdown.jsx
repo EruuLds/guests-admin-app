@@ -81,6 +81,20 @@ export default function FilterDropdown() {
                                     {statusFilter === 'pending' && <FontAwesomeIcon icon={faCheckCircle} className="ms-2 text-rose"/>}
                                 </div>
                             </Button>
+                            <Button
+                                variant={'white'} 
+                                size={'sm'} 
+                                grow 
+                                onClick={() => {
+                                    setStatusFilter('used');
+                                    setIsOpen(false);
+                                }}
+                            >
+                                <div className="flex items-center">
+                                    <p>Usadas</p>
+                                    {statusFilter === 'used' && <FontAwesomeIcon icon={faCheckCircle} className="ms-2 text-rose"/>}
+                                </div>
+                            </Button>
                         </div>
                     </div>
                 </Dropdown>

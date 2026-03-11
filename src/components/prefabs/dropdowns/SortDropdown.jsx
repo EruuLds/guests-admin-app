@@ -34,8 +34,8 @@ export default function SortDropdown() {
                                     setIsOpen(false);
                                 }}
                             >
-                                <div className="flex items-center">
-                                    <p>Nombre (ascendente)</p>
+                                <div className="flex items-center text-nowrap">
+                                    <p>Nombre (asc)</p>
                                     {sortBy === 'name-asc' && <FontAwesomeIcon icon={faCheckCircle} className="ms-2 text-rose"/>}
                                 </div>
                             </Button>
@@ -48,8 +48,8 @@ export default function SortDropdown() {
                                     setIsOpen(false);
                                 }}
                             >
-                                <div className="flex items-center">
-                                    <p>Nombre (descendente)</p>
+                                <div className="flex items-center text-nowrap">
+                                    <p>Nombre (desc)</p>
                                     {sortBy === 'name-desc' && <FontAwesomeIcon icon={faCheckCircle} className="ms-2 text-rose"/>}
                                 </div>
                             </Button>
@@ -62,8 +62,8 @@ export default function SortDropdown() {
                                     setIsOpen(false);
                                 }}
                             >
-                                <div className="flex items-center">
-                                    <p>Mesa (ascendente)</p>
+                                <div className="flex items-center text-nowrap">
+                                    <p>Mesa (asc)</p>
                                     {sortBy === 'table-asc' && <FontAwesomeIcon icon={faCheckCircle} className="ms-2 text-rose"/>}
                                 </div>
                             </Button>
@@ -76,8 +76,8 @@ export default function SortDropdown() {
                                     setIsOpen(false);
                                 }}
                             >
-                                <div className="flex items-center">
-                                    <p>Mesa (descendente)</p>
+                                <div className="flex items-center text-nowrap">
+                                    <p>Mesa (desc)</p>
                                     {sortBy === 'table-desc' && <FontAwesomeIcon icon={faCheckCircle} className="ms-2 text-rose"/>}
                                 </div>
                             </Button>

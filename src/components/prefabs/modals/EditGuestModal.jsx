@@ -2,13 +2,13 @@ import Modal from "../../modal/Modal";
 import ModalBody from "../../modal/ModalBody";
 import ModalFooter from "../../modal/ModalFooter";
 import Button from "../../ui/Button";
-import GuestForm from "../forms/GuestForm";
 import LoadingOverlay from "../../ui/LoadingOverlay";
 import { DataContext } from "../../../contexts/DataContext";
 import { useContext } from "react";
 import { useHandleModals } from "../../../hooks/useHandleModals";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
+import EditGuestForm from "../forms/EditGuestForm";
 
 export default function EditGuestModal() {
     const { loading, dirtyForms } = useContext(DataContext);
@@ -25,18 +25,18 @@ export default function EditGuestModal() {
             onClose={
                 dirtyForms.some(df => df === formID)
                     ? () => handleModals("open", "confirmDiscardEditing")
-                    : () => handleModals("close", "editGuest")
+                    : () => handleModals("close", modalID)
             }
         >
             <ModalBody>
-                <GuestForm formType={"edit"} formId={formID} />
+                <EditGuestForm formId={formID}/>
             </ModalBody>
             <ModalFooter alignment={"end"}>
                 <Button
                     variant={'secondary'}
                     onClick={
                         dirtyForms.some(df => df === formID)
-                            ? () => {handleModals("open", "confirmDiscardEditing")}
+                            ? () => handleModals("open", "confirmDiscardEditing")
                             : () => handleModals("close", modalID)
                     }
                 >
@@ -45,6 +45,7 @@ export default function EditGuestModal() {
                 <Button
                     variant={'primary'}
                     targetForm={formID}
+                    disabled={!dirtyForms.some(df => df === formID)}
                 >
                     <FontAwesomeIcon icon={faFloppyDisk} className="me-2" />
                     Guardar

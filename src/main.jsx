@@ -6,11 +6,11 @@ import { DataContextProvider } from './contexts/DataContext.jsx'
 import { ModalContextProvider } from './contexts/ModalContext.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  //<StrictMode>
     <DataContextProvider>
       <ModalContextProvider>
         <App />
       </ModalContextProvider>
     </DataContextProvider>
-  </StrictMode>
+  //</StrictMode>
 )

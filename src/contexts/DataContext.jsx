@@ -1,12 +1,16 @@
 import { createContext, useState, useEffect } from "react";
 import { ref, onValue, push, update, remove } from "firebase/database";
-import database from '../firebase/firebaseConfig';
+import { database } from '../firebase/firebaseConfig';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig";
 
 export const DataContext = createContext();
 
 export function DataContextProvider({ children }) {
   const customInvitationURL = 'https://demo-invitation.netlify.app';
-  const eventId = 'EV-DEMO-2026';
+  const urlProvidedId = new URLSearchParams(window.location.search).get('event');
+  const [event, setEvent] = useState(null);
+  const [user, setUser] = useState(null);
 
   const [selectedCard, setSelectedCard] = useState(null);
   const [dirtyForms, setDirtyForms] = useState([])
@@ -22,9 +26,44 @@ export function DataContextProvider({ children }) {
   const [statusFilter, setStatusFilter] = useState("all");
   const [sortBy, setSortBy] = useState("name-asc");
 
+  useEffect(() => {
+    const onLoad = () => setInitialLoading(false);
+    
+    setEvent('DEMO-2026'); //Eliminar después de integrar la pantalla de formulario de ID de evento
+
+    if (document.readyState === "complete") {
+      setInitialLoading(false);
+    } else {
+      window.addEventListener("load", onLoad);
+    }
+
+    return () => window.removeEventListener("load", onLoad);
+  }, []);
+
+  //Comprobar si existe una sesión iniciada con Firebase Auth
+  useEffect(() => {
+    setInitialLoading(true);
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+
+      setInitialLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   // Leer invitados en tiempo real
   useEffect(() => {
-    const guestsRef = ref(database, `events/EV-DEMO-2026/guests`);
+    if (!(event && user)) return;
+
+    setInitialLoading(true);
+    const guestsRef = ref(database, `guests/${event}`);
     const unsubscribe = onValue(
       guestsRef,
       snapshot => {
@@ -44,53 +83,19 @@ export function DataContextProvider({ children }) {
     );
 
     return () => unsubscribe();
-  }, []);
+  }, [event, user]);
 
-  // Funciones de CRUD
-  const addGuest = async (guestData, onSuccess, onError, onComplete) => {
-    setLoading(true);
-    try {
-      await push(ref(database, `events/${eventId}/guests`), guestData);
-      onSuccess?.();
-    } catch (err) {
-      setError(err.message);
-      onError?.();
-    } finally {
-      setLoading(false);
-      onComplete?.();
-    }
-  };
-
-  const updateGuest = async (id, updatedData, onSuccess, onError, onComplete) => {
-    setLoading(true);
-    try {
-      await update(ref(database, `events/${eventId}/guests/${id}`), updatedData);
-      onSuccess?.();
-    } catch (err) {
-      setError(err.message);
-      onError?.();
-    } finally {
-      setLoading(false);
-      onComplete?.();
-    }
-  };
-
-  const deleteGuest = async (id, onSuccess, onError, onComplete) => {
-    setLoading(true);
-    try {
-      await remove(ref(database, `events/${eventId}/guests/${id}`));
-      onSuccess?.();
-    } catch (err) {
-      setError(err.message);
-      onError?.();
-    } finally {
-      setLoading(false);
-      onComplete?.();
-    }
-  };
+  /*useEffect(() => {
+    console.log(guests);
+  }, [guests])*/
 
   return (
     <DataContext.Provider value={{
+      user,
+      setUser,
+      event,
+      setEvent,
+      urlProvidedId,
       selectedCard,
       setSelectedCard,
       dirtyForms,
@@ -98,11 +103,11 @@ export function DataContextProvider({ children }) {
       customInvitationURL,
       guests,
       initialLoading,
+      setInitialLoading,
       loading,
+      setLoading,
       error,
-      addGuest,
-      updateGuest,
-      deleteGuest,
+      setError,
       searchData,
       setSearchData,
       statusFilter,

@@ -16,7 +16,7 @@ export default function GuestCard({id, guestName, guestLastName, passes, table, 
     const isOpen = selectedCard === id;
     const share = shareInvitation(id, guestName);
     const shareWA = shareInvitationViaWhatsApp(id, guestName);
-
+    
     const statusBadgeMap = {
         pending: {
             label: 'Pendiente',

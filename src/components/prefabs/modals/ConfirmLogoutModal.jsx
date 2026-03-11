@@ -4,37 +4,39 @@ import ModalFooter from '../../modal/ModalFooter'
 import Button from '../../ui/Button'
 import { useHandleModals } from '../../../hooks/useHandleModals'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { useAuth } from '../../../hooks/database/useAuth'
 
-export default function ConfirmDiscardAddingModal() {
+export default function ConfirmLogoutModal() {
     const handleModals = useHandleModals();
-    const modalID = 'confirmDiscardAdding';
+    const { logout } = useAuth()
+    const modalID = 'confirmLogout';
 
     return (
-        <Modal id={modalID} title={"Descartar Cambios"}>
+        <Modal id={modalID} title={"Cerrar Sesión"}>
             <ModalBody>
                 <div className="text-center">
                     <p>
-                        Hay cambios en la información del formulario. ¿Deseas descartarlos?
+                        ¿Deseas cerrar sesión?
                     </p>
                 </div>
             </ModalBody>
             <ModalFooter alignment={"center"}>
                 <Button
-                    variant={'primary'}
+                    variant={'secondary'}
                     onClick={() => handleModals("close", modalID)}
                 >
-                    Volver
+                    Cancelar
                 </Button>
                 <Button
-                    variant={'secondary'}
+                    variant={'primary'}
                     onClick={() => {
-                        handleModals("close", modalID);
-                        handleModals("close", "addGuest");
+                        logout();
+                        handleModals('close', modalID);
                     }}
                 >
-                    <FontAwesomeIcon icon={faTrashCan} className='me-2' />
-                    Descartar
+                    <FontAwesomeIcon icon={faArrowRightFromBracket} className='me-2' />
+                    Cerrar Sesión
                 </Button>
             </ModalFooter>
         </Modal>

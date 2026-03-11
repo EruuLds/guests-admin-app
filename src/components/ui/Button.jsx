@@ -22,14 +22,19 @@ export default function Button({ children, variant, size, shape, targetForm, onC
     circle: "aspect-square rounded-full",
     square: "aspect-square"
   }
+  const stateMap = {
+    enabled: "cursor-pointer hover:brightness-97 active:scale-[0.98]",
+    disabled: "cursor-not-allowed"
+  }
 
   return (
     <button
-      className={`uppercase cursor-pointer hover:backdrop-brightness-85
+      className={`relative uppercase
         ${grow ? 'w-full' : 'w-fit'}
-        ${variant && (isDisabled ? 'button-disabled cursor-not-allowed' : variantMap[variant])}
+        ${variant && variantMap[variant]}
         ${shape && shapeMap[shape]}
-        ${size ? sizeMap[size] : sizeMap['md'] }`
+        ${size ? sizeMap[size] : sizeMap['md'] }
+        ${isDisabled ? stateMap['disabled'] : stateMap['enabled'] }`
       }
       type={targetForm ? 'submit' : 'button'}
       form={targetForm ? targetForm : null}
@@ -37,19 +42,7 @@ export default function Button({ children, variant, size, shape, targetForm, onC
       disabled={isDisabled}
     >
       {children}
+      {isDisabled && <div className={`absolute w-full h-full top-0 left-0 bg-zinc-50/50 ${sizeMap[size]}`}></div>}
     </button>
   );
 }
-
-/*
-Button props values:
-
-type: icon, text, combined
-size: normal, small
-wFit: content, container
-roundness: small, large, full
-buttonColor: white, gray, green
-textColor: dark, light, yellow, blue, green, red
-icon: (Use classes from bootstrap icons, e.g: for 'bi bi-gear' use only 'gear')
-onClickFunction: (Insert any global function or function from the component where you are using the button)
-*/

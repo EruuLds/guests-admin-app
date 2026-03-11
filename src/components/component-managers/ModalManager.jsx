@@ -1,8 +1,9 @@
-import AddGuestModal from "../prefabs/modals/AddGuestModal";
+import CreateGuestModal from "../prefabs/modals/CreateGuestModal";
 import EditGuestModal from "../prefabs/modals/EditGuestModal";
 import DeleteGuestModal from "../prefabs/modals/DeleteGuestModal";
-import ConfirmDiscardAddingModal from "../prefabs/modals/ConfirmDiscardAddingModal";
+import ConfirmDiscardCreatingModal from "../prefabs/modals/ConfirmDiscardCreatingModal";
 import ConfirmDiscardEditingModal from "../prefabs/modals/ConfirmDiscardEditingModal";
+import ConfirmLogoutModal from "../prefabs/modals/ConfirmLogoutModal";
 import { ModalContext } from "../../contexts/ModalContext";
 import { useContext } from "react";
 
@@ -11,8 +12,8 @@ export default function ModalManager() {
 
   return (
     <>
-      {openModals.some((modal) => modal === "addGuest") && ( // Añadir nuevo invitado.
-        <AddGuestModal />
+      {openModals.some((modal) => modal === "createGuest") && ( // Añadir nuevo invitado.
+        <CreateGuestModal />
       )}
       {openModals.some((modal) => modal === "editGuest") && ( // Editar un invitado.
         <EditGuestModal />
@@ -20,11 +21,14 @@ export default function ModalManager() {
       {openModals.some((modal) => modal === "confirmDeleteGuest") && ( //Confirmar la eliminación de un invitado
         <DeleteGuestModal />
       )}
-      {openModals.some((modal) => modal === "confirmDiscardAdding") && ( //Descartar los cambios al añadir un nuevo invitado.
-        <ConfirmDiscardAddingModal />
+      {openModals.some((modal) => modal === "confirmDiscardCreating") && ( //Descartar los cambios al añadir un nuevo invitado.
+        <ConfirmDiscardCreatingModal />
       )}
-      {openModals.some((modal) => modal === "confirmDiscardEditing") && ( //Descartar los cambios al editar un invitado.
+      {openModals.some((modal) => modal === "confirmDiscardEditing") && ( //Descartar los cambios al editar un nuevo invitado.
         <ConfirmDiscardEditingModal />
+      )}
+      {openModals.some((modal) => modal === "confirmLogout") && ( //Descartar los cambios al editar un invitado.
+        <ConfirmLogoutModal  />
       )}
     </>
   );
