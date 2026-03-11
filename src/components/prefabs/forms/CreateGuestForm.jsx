@@ -51,7 +51,7 @@ export default function CreateGuestForm({ formId }) {
         }
 
         try {
-            const uniqueID = await generateUniqueId({maxRetries: 10, compareWith: guests});
+            const uniqueID = generateUniqueId({maxRetries: 10, compareWith: guests});
             await createGuest(uniqueID, payload);
             openDialog('success', `Añadiste a ${data.name} ${data.lastName} a la lista`);
         } catch(err) {

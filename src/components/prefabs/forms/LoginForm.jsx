@@ -1,14 +1,17 @@
 import Button from "../../ui/Button";
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightToBracket, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../../hooks/database/useAuth";
+import { useDataContext } from "../../../hooks/contexts/useDataContext";
+import { useEffect } from "react";
 
 export default function LoginForm() {
     const params = new URLSearchParams(window.location.search);
     const urlProvidedEmail = params.get("email");
     const urlProvidedPass = params.get("pass");
 
+    const { error, setError } = useDataContext();
     const { login } = useAuth();
     const formId = 'loginForm';
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -21,7 +24,6 @@ export default function LoginForm() {
 
     const onSubmit = (data) => {
         login(data);
-
     }
 
     return (
@@ -29,6 +31,18 @@ export default function LoginForm() {
             <h3 className="text-pretty">Iniciar sesión</h3>
 
             <form id={formId} className="flex flex-col gap-2" method="post" onSubmit={handleSubmit(onSubmit)}>
+                {error &&
+                    <div className="panel-b">
+                        <p className="text-red">
+                            <FontAwesomeIcon icon={faTriangleExclamation} />
+                            {error.code === "auth/invalid-credential"
+                                ? 'Correo o contraseña incorrectos'
+                                : 'Ocurrió un error inesperado al iniciar sesión, inténtalo nuevamente'
+                            }
+                        </p>
+                    </div>
+                }
+
                 <div className="flex flex-col items-start gap-1">
                     <label htmlFor="email" >Correo electrónico</label>
                     <input

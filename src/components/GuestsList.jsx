@@ -11,7 +11,78 @@ export default function GuestsList() {
     const filteredAndSortedGuests = useFilteredAndSortedGuests();
     const skeletons = Array.from({ length: 10 }, (_, i) => (<GuestCardSkeleton key={i} />));
 
+    const emptyStateMessages = {
+        confirmed: 'Si algún invitado confirma su asistencia, aparecerá aquí.',
+        declined: 'Si algún invitado indica que no asistirá, aparecerá aquí.',
+        pending: 'No tienes invitaciones pendientes de confirmación.',
+        used: 'Ningún invitado ha usado su invitación todavía.'
+    };
+
+    if (initialLoading) {
+        return (
+            <div className="mask-b-from-10% h-full overflow-y-hidden">{skeletons}</div>
+        );
+    }
+    else if (error) {
+        return (
+            <div className="flex items-center flex-col text-center pt-10">
+                <h3 className="text-2xl mb-3 text-light-gray">
+                    Se produjo un error al obtener los datos.
+                </h3>
+                <p className="mb-8 text-light-gray">
+                    Por favor, refresca la página
+                </p>
+            </div>
+        );
+    } else if (guests.length === 0) {
+        return (
+            <div className="flex items-center flex-col text-center pt-10 select-none">
+                <h3 className="text-2xl mb-3 text-light-gray">
+                    No hay invitados en tu lista
+                </h3>
+                <p className="mb-8 text-light-gray">
+                    Empieza con "
+                    <FontAwesomeIcon icon={faUserPlus} className="me-2" />
+                    NUEVA INVITACIÓN" para gestionar su asistencia.
+                </p>
+            </div>
+        );
+    } else if (filteredAndSortedGuests.length === 0) {
+        return (
+            <div className="flex items-center flex-col text-center pt-10">
+                <h3 className="text-2xl mb-3 text-light-gray">
+                    {searchData === ''
+                        ? `Nada por aquí${statusFilter !== 'pending' ? ' aún' : ''}...`
+                        : `Sin resultados para "${searchData}".`
+                    }
+                </h3>
+                <p className="mb-8 text-light-gray">
+                    {searchData === ''
+                        ? emptyStateMessages[statusFilter]
+                        : 'Por favor, verifica la información de tu búsqueda.'
+                    }
+                </p>
+            </div>
+        );
+    }
+
     return (
+        <> {filteredAndSortedGuests.map((guest) => (
+                <GuestCard
+                    key={guest.id}
+                    id={guest.id}
+                    guestName={guest.name}
+                    guestLastName={guest.lastName}
+                    passes={guest.passes}
+                    table={guest.table}
+                    status={guest.status}
+                    confirmedPasses={guest.confirmedPasses}
+                />
+            ))}
+        </>
+    )
+
+    /*return (
         <>
             {(error && guests.length === 0) &&
                 <div className="flex items-center flex-col text-center pt-10">
@@ -71,5 +142,5 @@ export default function GuestsList() {
                 />
             ))}
         </>
-    );
+    );*/
 }

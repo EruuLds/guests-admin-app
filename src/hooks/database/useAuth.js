@@ -4,12 +4,10 @@ import { useEffect } from "react";
 
 export function useAuth() {
     const { setError, setLoading, setUser } = useDataContext();
-    useEffect(() => {
-        return setError(null);
-    }, [])
 
     const signUp = async (data) => {
         setLoading(true);
+        setError(null);
 
         try {
             const user = await authService.signUp(data);
@@ -24,6 +22,7 @@ export function useAuth() {
 
     const login = async (data) => {
         setLoading(true);
+        setError(null);
 
         try {
             const user = await authService.login(data);
@@ -38,6 +37,7 @@ export function useAuth() {
 
     const logout = async () => {
         setLoading(true);
+        setError(null);
 
         try {
             await authService.logout();
@@ -52,6 +52,8 @@ export function useAuth() {
     
     /*const anonymousLogin = async () => {
         setLoading(true);
+        setError(null);
+
         try {
             const userCredential = await signInAnonymously(auth);
 

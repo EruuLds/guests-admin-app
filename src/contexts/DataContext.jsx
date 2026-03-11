@@ -85,9 +85,9 @@ export function DataContextProvider({ children }) {
     return () => unsubscribe();
   }, [event, user]);
 
-  /*useEffect(() => {
-    console.log(guests);
-  }, [guests])*/
+  useEffect(() => {
+    console.log(error);
+  }, [error])
 
   return (
     <DataContext.Provider value={{
