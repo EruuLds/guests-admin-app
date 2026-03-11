@@ -42,7 +42,7 @@ export default function Dashboard() {
                         : "scale-[1.0] opacity-100"
                         }`}
                 >
-                    <Button variant={"primary"} size={'lg'} shape={'circle'} grow onClick={() => handleModals("open", "addGuest")} >
+                    <Button variant={"primary"} size={'lg'} shape={'circle'} grow onClick={() => handleModals("open", "createGuest")} >
                         <FontAwesomeIcon icon={faUserPlus} />
                     </Button>
                 </div>
