@@ -8,7 +8,7 @@ import { useHandleModals } from '../../../hooks/useHandleModals';
 import { useHandleDirtyForms } from '../../../hooks/useHandleDirtyForms';
 import { useDialog } from '../../../hooks/useDialog';
 import { useGuests } from '../../../hooks/database/useGuests';
-import { generateUniqueId } from '../../../utils/generateUniqueID';
+import { generateUniqueId } from '../../../utils/generateUniqueId';
 
 export default function CreateGuestForm({ formId }) {
     const handleModals = useHandleModals();
